@@ -1,7 +1,6 @@
 package com.babybong.appting;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,7 +9,6 @@ import android.view.KeyEvent;
 
 import info.androidhive.appting.R;
 
-import com.babybong.appting.login.BaseActivity;
 import com.babybong.appting.login.LoginActivity;
 import com.babybong.appting.login.service.LoginService;
 
@@ -18,10 +16,7 @@ import com.babybong.appting.login.service.LoginService;
  * Created by hoon on 2015-05-10.
  */
 public class SplashActivity extends BaseActivity {
-    SharedPreferences setting;
-    SharedPreferences.Editor editor;
 
-    // Splash screen timer
     private static int SPLASH_TIME_OUT = 3000;
 
     @Override

@@ -13,7 +13,6 @@ import android.telephony.TelephonyManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +37,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.babybong.appting.ListMainActivity;
+import com.babybong.appting.BaseActivity;
 
 import info.androidhive.appting.R;
 import com.babybong.appting.app.AppController;
@@ -136,7 +135,7 @@ public class PhoneAuthActivity extends BaseActivity {
      */
     private String getAuthNumber() {
         double authNumber = Math.floor(Math.random() * 1000000) + 100000;
-        return String.valueOf(authNumber);
+        return String.valueOf((int)authNumber);
     }
 
     private void registMemberPrivateInfo() throws Exception {
@@ -183,12 +182,14 @@ public class PhoneAuthActivity extends BaseActivity {
                                 nextActivity();
                             }
                         } catch (JSONException e) {
+                            alertMessage("잠시후 다시 시도해주세요.");
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                alertMessage("잠시후 다시 시도해주세요.");
                 VolleyLog.e("Error: ", "에러 : " + error.toString());
                 error.printStackTrace();
             }
@@ -287,14 +288,9 @@ public class PhoneAuthActivity extends BaseActivity {
     }
 
     private void nextActivity() {
-        Intent intent = new Intent(PhoneAuthActivity.this, ListMainActivity.class);
+        Intent intent = new Intent(PhoneAuthActivity.this, PhoneAuthConfirmActivity.class);
         startActivity(intent);
     }
 
-    private void alertMessage(String message) {
-        Log.d("alertMessage", "message : " + message);
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
+
 }

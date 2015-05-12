@@ -1,19 +1,19 @@
-package com.babybong.appting.profile;
+package com.babybong.appting.login;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.babybong.appting.BaseActivity;
+import com.babybong.appting.app.AppController;
+import com.babybong.appting.main.MainActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,30 +22,20 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.babybong.appting.ListMainActivity;
-
 import info.androidhive.appting.R;
-import com.babybong.appting.app.AppController;
-import com.babybong.appting.BaseActivity;
-import com.babybong.appting.login.SignupActivity;
 
 /**
- *  프로필 수정 메인화면
+ * 로그인
  */
-public class ProfileEditActivity extends BaseActivity {
-    EditText inputMail, inputPw;
-    CheckBox autoLogIn;
-
+public class PhoneAuthConfirmActivity extends BaseActivity {
+    EditText inputAuthNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_edit);
+        setContentView(R.layout.activity_phoneauth_confirm);
 
-        inputMail = (EditText) findViewById(R.id.input_mail);
-        inputPw = (EditText) findViewById(R.id.input_PW);
-        autoLogIn = (CheckBox) findViewById(R.id.Auto_LogIn);
-
+        inputAuthNumber = (EditText) findViewById(R.id.input_auth_number);
     }
 
     @Override
@@ -55,22 +45,24 @@ public class ProfileEditActivity extends BaseActivity {
         return true;
     }
 
-    public void onClickLogin(View view) {
-        Log.d("login", "로그인 클릭!!");
-        checkMember();
+    public void onClickAuth(View view) {
+        Log.d("auth", "인증 클릭!!");
+        checkAuthNumber();
     }
 
-    public void onClickSignup(View view) {
-        Log.d("login", "회원가입 화면이동 클릭!!");
-        Intent intent = new Intent(ProfileEditActivity.this, SignupActivity.class);
+    public void nextActivity(Class nextClass) {
+        Log.d("login", "메인 화면이동");
+        Intent intent = new Intent(PhoneAuthConfirmActivity.this, nextClass);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
-    private void checkMember() {
-        final String mail = inputMail.getText().toString();
-        final String pwd = inputPw.getText().toString();
+    private void checkAuthNumber() {
+        setting = getSharedPreferences("setting", 0);
+
+        final String authNumber = inputAuthNumber.getText().toString();
+        final String mail = setting.getString("MAIL", "");
         String url = AppController.API_URL + "/members/findMember";
 
         final JSONObject jsonObject = new JSONObject();
@@ -93,15 +85,15 @@ public class ProfileEditActivity extends BaseActivity {
                     Log.d("isMember", "apiMessage : " + apiMessage);
                     if (isApiSuccess) {
                         JSONObject memberDto = response.getJSONObject("dto");
-                        String dbPwd = memberDto.getString("password");
-                        if (isCorrectPwd(pwd, dbPwd)) {
-                            Log.d("login", "멤버입니다.!! 메인화면으로 이동!!");
-                            nextActivity();
+                        String phoneAuth = memberDto.getString("phoneAuth");
+
+                        if (isCorrectAuthNumber(authNumber, phoneAuth)) {
+                            nextActivity(MainActivity.class);
                         } else {
-                            alertMessage("패스워드가 다릅니다.");
+                            alertMessage("인증번호가 다릅니다.");
                         }
                     } else {
-                        alertMessage(apiMessage);
+                        alertMessage("잠시후 다시 시도하세요.");
                     }
                 } catch (JSONException e) {
                     alertMessage("담당자에게 문의하세요.");
@@ -139,18 +131,13 @@ public class ProfileEditActivity extends BaseActivity {
         AppController.getInstance().addToRequestQueue(jsObjRequest);
     }
 
-    private boolean isCorrectPwd(String inputPwd, String dbPwd) {
-        if (inputPwd.equals(dbPwd)) {
+    private boolean isCorrectAuthNumber(String authNumber, String dbAuthNumber) {
+        if (authNumber == null) {
+            return false;
+        }
+        if (authNumber.equals(dbAuthNumber)) {
             return true;
         }
         return false;
     }
-
-    private void nextActivity() {
-        Intent intent = new Intent(ProfileEditActivity.this, ListMainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
 }

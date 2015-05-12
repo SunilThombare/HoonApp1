@@ -2,6 +2,7 @@ package com.babybong.appting.login.service;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import java.util.Map;
 
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.login.LoginActivity;
+import com.babybong.appting.login.PhoneAuthActivity;
 import com.babybong.appting.main.MainActivity;
 
 /**
@@ -55,9 +57,15 @@ public class LoginService {
                     if (isApiSuccess) {
                         JSONObject memberDto = response.getJSONObject("dto");
                         String dbPwd = memberDto.getString("password");
+                        String phone = memberDto.getString("phone");
                         if (isCorrectPwd(pwd, dbPwd)) {
-                            Log.d("login", "멤버입니다.!! 메인화면으로 이동!!");
-                            loginSuccessNextActivity(MainActivity.class);
+                            mailStore(mail);
+                            if (phone == null || "null".equals(phone)) { //전화번호가 없으면 폰인증화면으로이동
+                                nextActivity(PhoneAuthActivity.class);
+                            } else {
+                                Log.d("login", "멤버입니다.!! 메인화면으로 이동!! ==> " + phone);
+                                loginSuccessNextActivity(MainActivity.class);
+                            }
                         } else {
                             alertMessage("패스워드가 다릅니다.");
                             loginFailNextActivity(LoginActivity.class);
@@ -134,5 +142,12 @@ public class LoginService {
         Toast toast = Toast.makeText(currentActivity, message, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
+    }
+
+    private void mailStore(String mail) {
+        SharedPreferences setting = currentActivity.getSharedPreferences("setting", 0);
+        SharedPreferences.Editor editor= setting.edit();
+        editor.putString("MAIL", mail);
+        editor.commit();
     }
 }

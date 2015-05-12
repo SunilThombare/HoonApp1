@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -27,6 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import info.androidhive.appting.R;
+
+import com.babybong.appting.BaseActivity;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.model.MemberDto;
 
@@ -142,15 +142,6 @@ public class SignupActivity extends BaseActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-
-    private void alertMessage(String message) {
-        Log.d("alertMessage", "message : " + message);
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
-
-
 
     private void storeMail(Context context, String mail) {
         final SharedPreferences prefs = getGCMPreferences(context);

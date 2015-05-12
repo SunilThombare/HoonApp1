@@ -3,12 +3,10 @@ package com.babybong.appting.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -22,6 +20,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.babybong.appting.BaseActivity;
 import com.babybong.appting.ListMainActivity;
 
 import info.androidhive.appting.R;
@@ -151,10 +150,4 @@ public class LoginInfoActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    private void alertMessage(String message) {
-        Log.d("alertMessage", "message : " + message);
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-    }
 }
