@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="info.androidhive.appting"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="info.androidhive.customlistviewvolley.permission.C2D_MESSAGE" />
+    <permission android:name="info.androidhive.appting.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <application
+        android:name="com.babybong.appting.app.AppController"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.babybong.appting.SplashActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--<activity
+            android:name="info.androidhive.customlistviewvolley.main.SampleTabsDefault"
+            android:label="Tabs/Default"
+            android:theme="@style/Theme.PageIndicatorDefaults">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.jakewharton.android.viewpagerindicator.sample.SAMPLE" />
+            </intent-filter>
+        </activity>-->
+        <activity android:name="com.babybong.appting.main.MainActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/Theme.PageIndicatorDefaults"/>
+        <activity android:name="com.babybong.appting.login.LoginActivity" android:label="@string/app_name" />
+        <activity android:name="com.babybong.appting.login.SignupActivity" android:label="@string/app_name" />
+        <activity android:name="com.babybong.appting.login.PhoneAuthActivity" android:label="@string/app_name" />
+        <activity android:name="com.babybong.appting.GcmMainActivity" android:label="@string/app_name" />
+        <activity android:name="com.babybong.appting.ListMainActivity" android:label="@string/app_name" />
+        <activity android:name="com.babybong.appting.sms.SMSActivity" android:label="@string/app_name" />
+
+        <activity android:name="com.babybong.appting.login.LoginInfoActivity" android:label="@string/app_name" />
+
+        <receiver
+            android:name="com.babybong.appting.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="info.androidhive.customlistviewvolley" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.babybong.appting.GcmIntentService" />
+    </application>
+
+</manifest>
