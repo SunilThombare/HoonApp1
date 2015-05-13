@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.babybong.appting.BaseActivity;
 import com.babybong.appting.app.AppController;
+import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.main.MainActivity;
 
 import org.json.JSONException;
@@ -59,10 +60,8 @@ public class PhoneAuthConfirmActivity extends BaseActivity {
     }
 
     private void checkAuthNumber() {
-        setting = getSharedPreferences("setting", 0);
-
         final String authNumber = inputAuthNumber.getText().toString();
-        final String mail = setting.getString("MAIL", "");
+        final String mail = DataStoredService.getStoredData(PhoneAuthConfirmActivity.this, DataStoredService.STORE_MAIL);
         String url = AppController.API_URL + "/members/findMember";
 
         final JSONObject jsonObject = new JSONObject();

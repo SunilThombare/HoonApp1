@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import info.androidhive.appting.R;
 
 import com.babybong.appting.login.LoginActivity;
+import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.login.service.LoginService;
 
 /**
@@ -29,22 +30,15 @@ public class SplashActivity extends BaseActivity {
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
 
-                setting = getSharedPreferences("setting", 0);
-                editor= setting.edit();
-
-                if (setting.getBoolean("Auto_Login_enabled", false)) {
-                    String mail = setting.getString("MAIL", "");
-                    String pw = setting.getString("PW", "");
-                    Log.d("SplashActivity", "mail : " + mail);
-                    Log.d("SplashActivity", "pw : " + pw);
-                    if (mail == null || mail.equals("")) {
-                        startLoginActivity();
-                    } else {
-                        LoginService loginService = new LoginService(SplashActivity.this);
-                        loginService.loginProcess(mail, pw);
-                    }
-                } else {
+                String mail = DataStoredService.getStoredData(SplashActivity.this, DataStoredService.STORE_MAIL);
+                String pw = DataStoredService.getStoredData(SplashActivity.this, DataStoredService.STORE_PWD);
+                Log.d("SplashActivity", "mail : " + mail);
+                Log.d("SplashActivity", "pw : " + pw);
+                if (mail == null || mail.equals("")) {
                     startLoginActivity();
+                } else {
+                    LoginService loginService = new LoginService(SplashActivity.this);
+                    loginService.loginProcess(mail, pw);
                 }
             }
 

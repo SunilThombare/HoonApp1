@@ -59,7 +59,7 @@ public class LoginService {
                         String dbPwd = memberDto.getString("password");
                         String phone = memberDto.getString("phone");
                         if (isCorrectPwd(pwd, dbPwd)) {
-                            mailStore(mail);
+                            storeData(mail, pwd);
                             if (phone == null || "null".equals(phone)) { //전화번호가 없으면 폰인증화면으로이동
                                 nextActivity(PhoneAuthActivity.class);
                             } else {
@@ -144,10 +144,8 @@ public class LoginService {
         toast.show();
     }
 
-    private void mailStore(String mail) {
-        SharedPreferences setting = currentActivity.getSharedPreferences("setting", 0);
-        SharedPreferences.Editor editor= setting.edit();
-        editor.putString("MAIL", mail);
-        editor.commit();
+    private void storeData(String mail, String pwd) {
+        DataStoredService.storeData(currentActivity, DataStoredService.STORE_MAIL, mail);
+        DataStoredService.storeData(currentActivity, DataStoredService.STORE_PWD, pwd);
     }
 }
