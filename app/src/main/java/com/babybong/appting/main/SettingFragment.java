@@ -12,7 +12,9 @@ import android.widget.Button;
 
 import info.androidhive.appting.R;
 import com.babybong.appting.SplashActivity;
+import com.babybong.appting.login.LoginActivity;
 import com.babybong.appting.login.LoginInfoActivity;
+import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.profile.ProfileEditActivity;
 
 public final class SettingFragment extends Fragment {
@@ -69,7 +71,7 @@ public final class SettingFragment extends Fragment {
                 case R.id.logout_btn:
                     Log.d("SettingFragment", "로그아웃");
                     loginInfoClear();
-                    nextActivity();
+                    loginActivity();
                     break;
                 case R.id.login_info_btn:
                     startActivity(LoginInfoActivity.class);
@@ -83,14 +85,11 @@ public final class SettingFragment extends Fragment {
     };
 
     private void loginInfoClear() {
-        setting = getActivity().getSharedPreferences("setting", 0);
-        editor= setting.edit();
-        editor.clear();
-        editor.commit();
+        DataStoredService.loginInfoClear(getActivity());
     }
 
-    private void nextActivity() {
-        Intent intent = new Intent(getActivity(), SplashActivity.class);
+    private void loginActivity() {
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);

@@ -31,4 +31,12 @@ public class DataStoredService {
         String mail = prefs.getString(key, "");
         return mail;
     }
+
+    public static void loginInfoClear(Context context) {
+        final SharedPreferences prefs = getGCMPreferences(context);
+        SharedPreferences.Editor editor= prefs.edit();
+        editor.remove(STORE_MAIL);
+        editor.remove(STORE_PWD);
+        editor.commit();
+    }
 }
