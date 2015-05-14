@@ -41,6 +41,7 @@ import com.babybong.appting.BaseActivity;
 
 import info.androidhive.appting.R;
 import com.babybong.appting.app.AppController;
+import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.model.MemberDto;
 
 /**
@@ -85,11 +86,12 @@ public class PhoneAuthActivity extends BaseActivity {
 
     private void editTextListener(final EditText targetEditText, final TextView nextEditText, final int maxLength) {
         targetEditText.addTextChangedListener(new TextWatcher() {
-            public void onTextChanged(CharSequence s, int start,int before, int count) {
-                if(targetEditText.getText().toString().length() == maxLength) {     //size as per your requirement
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (targetEditText.getText().toString().length() == maxLength) {     //size as per your requirement
                     nextEditText.requestFocus();
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // TODO Auto-generated method stub
             }
@@ -152,12 +154,12 @@ public class PhoneAuthActivity extends BaseActivity {
         final String phone2 = inputPhoneNumber2.getText().toString();
         final String phone3 = inputPhoneNumber3.getText().toString();
 
-        String mail = getStoredMail(PhoneAuthActivity.this);
+        String mail = DataStoredService.getStoredData(PhoneAuthActivity.this, DataStoredService.STORE_MAIL);
         String memberId = mail.split("@")[0];
         String url = AppController.API_URL + "/members/" + memberId; //멤버개인정보 추가 url
-        Log.d("phoneAuth", "mail : " + getStoredMail(PhoneAuthActivity.this));
+        Log.d("phoneAuth", "mail : " + mail);
         MemberDto memberDto = new MemberDto();
-        memberDto.setMail(getStoredMail(PhoneAuthActivity.this));
+        memberDto.setMail(mail);
         memberDto.setName(name);
         memberDto.setBirthday(year + month + day);
         memberDto.setSex(sex);
@@ -214,12 +216,6 @@ public class PhoneAuthActivity extends BaseActivity {
             }
         };
         AppController.getInstance().addToRequestQueue(jsObjRequest);
-    }
-
-    private String getStoredMail(Context context) {
-        final SharedPreferences prefs = getGCMPreferences(context);
-        String mail = prefs.getString(AppController.STORE_MAIL, "");
-        return mail;
     }
 
     private void sendSMS(String phoneNumber, String message) {

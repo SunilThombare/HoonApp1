@@ -28,6 +28,7 @@ import info.androidhive.appting.R;
 
 import com.babybong.appting.BaseActivity;
 import com.babybong.appting.app.AppController;
+import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.model.MemberDto;
 
 /**
@@ -93,7 +94,7 @@ public class SignupActivity extends BaseActivity {
                         Log.d("onResponse", "response.toString() : " + response.toString());
                         try {
                             if ((boolean)response.get("apiSuccess")) {
-                                storeMail(SignupActivity.this, email);
+                                DataStoredService.storeData(SignupActivity.this, DataStoredService.STORE_MAIL, email);
                                 nextActivity();
                             }
                         } catch (JSONException e) {
@@ -141,14 +142,6 @@ public class SignupActivity extends BaseActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-    }
-
-    private void storeMail(Context context, String mail) {
-        final SharedPreferences prefs = getGCMPreferences(context);
-
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(AppController.STORE_MAIL, mail);
-        editor.commit();
     }
 
 }

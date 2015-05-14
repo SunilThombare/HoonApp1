@@ -22,8 +22,6 @@ public class AppController extends Application {
 
 	private static AppController mInstance;
 
-    public static final String STORE_MAIL = "store_mail";
-
 	@Override
 	public void onCreate() {
 		super.onCreate();

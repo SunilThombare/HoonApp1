@@ -1,5 +1,6 @@
 package com.babybong.appting.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.babybong.appting.BaseActivity;
 
 import info.androidhive.appting.R;
 
+import com.babybong.appting.app.AppController;
 import com.babybong.appting.login.service.LoginService;
 
 /**
@@ -21,7 +23,7 @@ import com.babybong.appting.login.service.LoginService;
  */
 public class LoginActivity extends BaseActivity {
     EditText inputMail, inputPw;
-    CheckBox autoLogIn;
+    //CheckBox autoLogIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +32,18 @@ public class LoginActivity extends BaseActivity {
 
         inputMail = (EditText) findViewById(R.id.input_mail);
         inputPw = (EditText) findViewById(R.id.input_PW);
-        autoLogIn = (CheckBox) findViewById(R.id.Auto_LogIn);
+        /*autoLogIn = (CheckBox) findViewById(R.id.Auto_LogIn);
 
-        setting = getSharedPreferences("setting", 0);
+        setting = getSharedPreferences("setting", Context.MODE_PRIVATE);
         editor= setting.edit();
 
         if(setting.getBoolean("Auto_Login_enabled", false)) {
-            inputMail.setText(setting.getString("MAIL", ""));
-            inputPw.setText(setting.getString("PW", ""));
+            inputMail.setText(setting.getString(AppController.STORE_MAIL, ""));
+            inputPw.setText(setting.getString(AppController.STORE_PWD, ""));
             autoLogIn.setChecked(true);
-        }
+        }*/
 
-        autoLogIn.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+        /*autoLogIn.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // TODO Auto-generated method stub
@@ -50,16 +52,16 @@ public class LoginActivity extends BaseActivity {
                     String mail = inputMail.getText().toString();
                     String pw = inputPw.getText().toString();
 
-                    editor.putString("MAIL", mail);
-                    editor.putString("PW", pw);
+                    editor.putString(AppController.STORE_MAIL, mail);
+                    editor.putString(AppController.STORE_PWD, pw);
                     editor.putBoolean("Auto_Login_enabled", true);
                     editor.commit();
                 } else {
                     Log.d("login", "아이디 패스워드 삭제");
-                    /**
+                    *//**//**
                      * remove로 지우는것은 부분삭제
                      * clear로 지우는것은 전체 삭제 입니다
-                     */
+                     *//**//*
 //					editor.remove("MAIL");
 //					editor.remove("PW");
 //					editor.remove("Auto_Login_enabled");
@@ -67,7 +69,7 @@ public class LoginActivity extends BaseActivity {
                     editor.commit();
                 }
             }
-        });
+        });*/
     }
 
     @Override
