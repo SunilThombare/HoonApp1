@@ -63,7 +63,7 @@ public class ProfileEditActivity extends BaseActivity {
     }
 
     public void onClickBasicEditBtn(View view) {
-        nextActivity(GcmMainActivity.class);
+        nextActivity(ProfileBasicEditActivity.class);
     }
 
     public void onClickSelfIntroductionEditBtn(View view) {

@@ -87,8 +87,8 @@ public class LoginActivity extends BaseActivity {
     public void onClickSignup(View view) {
         Log.d("login", "회원가입 화면이동 클릭!!");
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 

@@ -58,6 +58,10 @@
         <activity android:name="com.babybong.appting.sms.SMSActivity" android:label="@string/app_name" />
 
         <activity android:name="com.babybong.appting.login.LoginInfoActivity" android:label="@string/app_name" />
+        <activity android:name="com.babybong.appting.profile.ProfileEditActivity" android:label="@string/app_name" />
+        <activity android:name="com.babybong.appting.profile.ProfileBasicEditActivity"
+            android:label="@string/app_name" />
+
 
         <receiver
             android:name="com.babybong.appting.GcmBroadcastReceiver"

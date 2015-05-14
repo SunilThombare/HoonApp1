@@ -95,6 +95,7 @@ public class SignupActivity extends BaseActivity {
                         try {
                             if ((boolean)response.get("apiSuccess")) {
                                 DataStoredService.storeData(SignupActivity.this, DataStoredService.STORE_MAIL, email);
+                                DataStoredService.storeData(SignupActivity.this, DataStoredService.STORE_PWD, pwd);
                                 nextActivity();
                             }
                         } catch (JSONException e) {
