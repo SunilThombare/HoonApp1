@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import info.androidhive.appting.R;
-import com.babybong.appting.SplashActivity;
+import com.babybong.appting.R;
 import com.babybong.appting.login.LoginActivity;
 import com.babybong.appting.login.LoginInfoActivity;
 import com.babybong.appting.login.service.DataStoredService;

@@ -26,7 +26,7 @@ import java.util.Map;
 import com.babybong.appting.GcmMainActivity;
 import com.babybong.appting.ListMainActivity;
 
-import info.androidhive.appting.R;
+import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.BaseActivity;
 import com.babybong.appting.login.SignupActivity;
@@ -45,10 +45,10 @@ public class ProfileEditActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
 
-        imageEditBtn = (Button) findViewById(R.id.image_edit_btn);
+        /*imageEditBtn = (Button) findViewById(R.id.image_edit_btn);
         basicEditBtn = (Button) findViewById(R.id.basic_edit_btn);
         selfIntroductionEditBtn = (Button) findViewById(R.id.self_introduction_edit_btn);
-        selfIntroductionChoiceEditBtn = (Button) findViewById(R.id.self_introduction_choice_edit_btn);
+        selfIntroductionChoiceEditBtn = (Button) findViewById(R.id.self_introduction_choice_edit_btn);*/
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ProfileEditActivity extends BaseActivity {
     }
 
     public void onClickSelfIntroductionEditBtn(View view) {
-        nextActivity(GcmMainActivity.class);
+        nextActivity(IntroductionEditActivity.class);
     }
 
     public void onClickSelfIntroductionChoiceEditBtn(View view) {

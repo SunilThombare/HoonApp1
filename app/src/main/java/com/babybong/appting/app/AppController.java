@@ -14,8 +14,9 @@ public class AppController extends Application {
 	public static final String TAG = AppController.class.getSimpleName();
 
     //api 서버주소
-    //public static final String API_URL = "http://192.168.25.5:8080";
-    public static final String API_URL = "http://192.168.219.117:8080";
+    //public static final String API_URL = "http://192.168.25.7:8080";
+    //public static final String API_URL = "http://192.168.219.117:8080";
+	public static final String API_URL = "http://192.168.43.167:8080";
 
 	private RequestQueue mRequestQueue;
 	private ImageLoader mImageLoader;

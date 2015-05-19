@@ -15,7 +15,6 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
-import info.androidhive.appting.R;
 
 public class GcmIntentService extends IntentService {
     public static final int NOTIFICATION_ID = 1;

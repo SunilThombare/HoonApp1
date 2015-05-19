@@ -7,9 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.babybong.appting.R;
 import com.viewpagerindicator.TabPageIndicator;
-
-import info.androidhive.appting.R;
 
 /**
  * Created by hoon on 2015-05-10.

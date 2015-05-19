@@ -30,8 +30,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import info.androidhive.appting.R;
-
 import com.babybong.appting.model.MemberDto;
 
 

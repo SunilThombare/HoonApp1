@@ -23,7 +23,7 @@ import java.util.Map;
 import com.babybong.appting.BaseActivity;
 import com.babybong.appting.ListMainActivity;
 
-import info.androidhive.appting.R;
+import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 
 /**

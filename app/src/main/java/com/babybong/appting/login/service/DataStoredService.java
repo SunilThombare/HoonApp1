@@ -14,6 +14,17 @@ public class DataStoredService {
     public static final String STORE_MAIL = "store_mail";
     public static final String STORE_PWD = "store_pwd";
 
+    public static final String STORE_NICKNAME = "STORE_NICKNAME";
+    public static final String STORE_AREA1 = "STORE_AREA1";
+    public static final String STORE_BLOODTYPE = "STORE_BLOODTYPE";
+    public static final String STORE_RELIGION = "STORE_RELIGION";
+    public static final String STORE_JOB = "STORE_JOB";
+
+    public static final String STORE_INTRODUCTION = "STORE_INTRODUCTION";
+    public static final String STORE_HOBBY = "STORE_HOBBY";
+    public static final String STORE_IDEALTYPE = "STORE_IDEALTYPE";
+    public static final String STORE_MYAPPEAL = "STORE_MYAPPEAL";
+
     public static SharedPreferences getGCMPreferences(Context context) {
         return context.getSharedPreferences("setting", Context.MODE_PRIVATE);
     }

@@ -23,6 +23,7 @@ android {
         exclude 'META-INF/ASL2.0'
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
+        exclude 'META-INF/DEPENDENCIES'
     }
 
     /*dexOptions {
@@ -44,4 +45,7 @@ dependencies {
     //compile files('libs/android-support-v4.jar')
     //compile 'com.viewpagerindicator:library:2.4.1'
     compile 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
+    compile 'org.apache.httpcomponents:httpcore:4.3.2'
+    compile 'org.apache.httpcomponents:httpmime:4.3.5'
+    compile 'com.google.code.gson:gson:2.2.4'
 }

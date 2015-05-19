@@ -21,8 +21,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import info.androidhive.appting.R;
-
 import com.babybong.appting.adater.CustomListAdapter;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.model.Movie;

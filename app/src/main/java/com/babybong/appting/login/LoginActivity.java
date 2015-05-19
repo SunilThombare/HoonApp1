@@ -13,8 +13,7 @@ import android.widget.EditText;
 
 import com.babybong.appting.BaseActivity;
 
-import info.androidhive.appting.R;
-
+import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.login.service.LoginService;
 

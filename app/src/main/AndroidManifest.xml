@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="info.androidhive.appting"
+    package="com.babybong.appting"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -8,6 +8,7 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="18" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -16,8 +17,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="info.androidhive.customlistviewvolley.permission.C2D_MESSAGE" />
-    <permission android:name="info.androidhive.appting.permission.C2D_MESSAGE"
+    <uses-permission android:name="com.babybong.appting.permission.C2D_MESSAGE" />
+    <permission android:name="com.babybong.appting.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
     <application
@@ -29,14 +30,14 @@
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.babybong.appting.SplashActivity"
+            android:name="com.babybong.appting.profile.ImageEditActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+       <!-- android:name="com.babybong.appting.SplashActivity"-->
         <!--<activity
             android:name="info.androidhive.customlistviewvolley.main.SampleTabsDefault"
             android:label="Tabs/Default"
@@ -61,6 +62,8 @@
         <activity android:name="com.babybong.appting.profile.ProfileEditActivity" android:label="@string/app_name" />
         <activity android:name="com.babybong.appting.profile.ProfileBasicEditActivity"
             android:label="@string/app_name" />
+        <activity android:name="com.babybong.appting.profile.IntroductionEditActivity"
+            android:label="@string/app_name" />
 
 
         <receiver
@@ -69,7 +72,7 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                <category android:name="info.androidhive.customlistviewvolley" />
+                <category android:name="com.babybong.appting" />
             </intent-filter>
         </receiver>
         <service android:name="com.babybong.appting.GcmIntentService" />

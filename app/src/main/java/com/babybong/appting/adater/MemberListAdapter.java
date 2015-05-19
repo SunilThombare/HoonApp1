@@ -13,7 +13,7 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.List;
 
-import info.androidhive.appting.R;
+import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.model.MemberDto;
 

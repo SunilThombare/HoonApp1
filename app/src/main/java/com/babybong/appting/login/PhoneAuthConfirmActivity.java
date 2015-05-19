@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.babybong.appting.BaseActivity;
+import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.main.MainActivity;
@@ -22,8 +23,6 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
-
-import info.androidhive.appting.R;
 
 /**
  * 로그인

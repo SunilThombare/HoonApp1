@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import info.androidhive.appting.R;
+import com.babybong.appting.R;
 
 public class SMSActivity extends Activity {
     /** Called when the activity is first created. */

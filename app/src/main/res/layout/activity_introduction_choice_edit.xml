@@ -9,17 +9,17 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
     <TextView
-    android:id="@+id/nickname_Text"
+    android:id="@+id/introduction_Text"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="30dp"
-    android:text="닉네임"
+    android:text="자기소개하기"
     />
 
     <EditText
-        android:id="@+id/input_nickname"
+        android:id="@+id/input_introduction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -30,36 +30,35 @@
     </EditText>
 
     <TextView
-        android:id="@+id/area_Text"
+        android:id="@+id/hobby_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="지역"
-        />
-
-    <Button
-        android:id="@+id/area1_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:maxLength="12"
-        android:text="선택"
-        android:onClick="onClickArea1Btn"/>
-
-    <TextView
-        android:id="@+id/job_Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="직업/직장"
+        android:text="취미가 무엇인가요?"
         />
 
     <EditText
-        android:id="@+id/input_job"
+        android:id="@+id/input_hobby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="16"
+        android:maxLength="12"
+       />
+
+    <TextView
+        android:id="@+id/myappeal_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="자신의 매력을 적어주세요."
+        />
+
+    <EditText
+        android:id="@+id/input_myappeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -69,48 +68,24 @@
     </EditText>
 
     <TextView
-        android:id="@+id/bloodtype_Text"
+        android:id="@+id/ideal_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="혈액형"
+        android:text="이상형을 적어주세요."
         />
 
-    <Button
-        android:id="@+id/bloodtype_btn"
+    <EditText
+        android:id="@+id/input_ideal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:maxLength="12"
-        android:singleLine="true"
-        android:text="선택"
-        android:onClick="onClickBloodTypeBtn">
-    </Button>
-
-    <TextView
-        android:id="@+id/religion_Text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="종교"
-        />
-
-    <Button
-        android:id="@+id/religion_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:maxLength="12"
-        android:singleLine="true"
-        android:onClick="onClickReligionBtn"
-        android:text="선택">
-    </Button>
+        android:singleLine="true">
+    </EditText>
 
     <LinearLayout
         android:layout_width="wrap_content"

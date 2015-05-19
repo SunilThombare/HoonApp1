@@ -1,7 +1,5 @@
 package com.babybong.appting;
 
-import info.androidhive.appting.R;
-
 import com.babybong.appting.adater.MemberListAdapter;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.model.MemberDto;

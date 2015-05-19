@@ -39,7 +39,7 @@ import java.util.Map;
 
 import com.babybong.appting.BaseActivity;
 
-import info.androidhive.appting.R;
+import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.model.MemberDto;

@@ -24,9 +24,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import info.androidhive.appting.R;
-
 import com.babybong.appting.BaseActivity;
+import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.model.MemberDto;

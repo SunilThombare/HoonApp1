@@ -1,6 +1,6 @@
 package com.babybong.appting.adater;
 
-import info.androidhive.appting.R;
+import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.model.Movie;
 

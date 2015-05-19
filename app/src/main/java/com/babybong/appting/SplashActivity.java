@@ -7,8 +7,6 @@ import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import info.androidhive.appting.R;
-
 import com.babybong.appting.login.LoginActivity;
 import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.login.service.LoginService;
