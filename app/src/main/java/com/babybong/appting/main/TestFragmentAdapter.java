@@ -8,7 +8,7 @@ import com.babybong.appting.R;
 import com.viewpagerindicator.IconPagerAdapter;
 
 class TestFragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
-    protected static final String[] CONTENT = new String[] { "This", "Is", "A", "Test", };
+    protected static final String[] CONTENT = new String[] { "This", "앱팅", "내프로필", "설정", };
     protected static final int[] ICONS = new int[] {
             R.drawable.perm_group_calendar,
             R.drawable.perm_group_camera,
@@ -24,7 +24,11 @@ class TestFragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapt
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 3) {
+        if (position == 1) {
+            return TodayTingFragment.newInstance(CONTENT[position % CONTENT.length]);
+        } else if (position == 2) {
+            return MyProfileFragment.newInstance(CONTENT[position % CONTENT.length]);
+        } else if (position == 3) {
             return SettingFragment.newInstance(CONTENT[position % CONTENT.length]);
         }
         return TestFragment.newInstance(CONTENT[position % CONTENT.length]);

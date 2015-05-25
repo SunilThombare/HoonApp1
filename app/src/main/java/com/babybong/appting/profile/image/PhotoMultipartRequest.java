@@ -1,5 +1,7 @@
 package com.babybong.appting.profile.image;
 
+import android.util.Log;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -36,8 +38,8 @@ public class PhotoMultipartRequest<T> extends Request<T> {
 
         mListener = listener;
         mImageFile = imageFile;
-
         buildMultipartEntity();
+        Log.d("PhotoMultipartRequest", "imageFile:" + imageFile.getName());
     }
 
     @Override

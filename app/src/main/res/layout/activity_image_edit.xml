@@ -14,26 +14,53 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
-    <ImageView
-        android:id="@+id/ivImageSelected"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:background="#20000000"
-        android:src="@drawable/ic_launcher" />
-
+        android:text="프로필 이미지 " />
+    <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivImageSelected"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:background="#20000000"
+            android:src="@drawable/ic_launcher" />
+        <ImageView
+            android:id="@+id/ivImageSelected2"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="20dp"
+            android:background="#20000000"
+            android:src="@drawable/ic_launcher" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <ImageView
+            android:id="@+id/ivImageSelected3"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:background="#20000000"
+            android:src="@drawable/ic_launcher" />
+        <ImageView
+            android:id="@+id/ivImageSelected4"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="20dp"
+            android:background="#20000000"
+            android:src="@drawable/ic_launcher" />
+    </LinearLayout>
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="pick image" />
 
-    <Button
+   <!-- <Button
         android:id="@+id/save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="업로드"
-        android:onClick="onClickSaveBtn"/>
+        android:onClick="onClickSaveBtn"/>-->
 
 </LinearLayout>

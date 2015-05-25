@@ -11,10 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.babybong.appting.R;
+import com.babybong.appting.app.AppController;
 import com.babybong.appting.login.LoginActivity;
 import com.babybong.appting.login.LoginInfoActivity;
 import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.profile.ProfileEditActivity;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 public final class SettingFragment extends Fragment {
     private static final String KEY_CONTENT = "TestFragment:Content";
@@ -44,7 +48,7 @@ public final class SettingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        onCreateTracker();
         if ((savedInstanceState != null) && savedInstanceState.containsKey(KEY_CONTENT)) {
             mContent = savedInstanceState.getString(KEY_CONTENT);
         }
@@ -103,5 +107,24 @@ public final class SettingFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(KEY_CONTENT, mContent);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(getActivity()).reportActivityStart(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(getActivity()).reportActivityStart(getActivity());
+    }
+
+    private void onCreateTracker() {
+        Tracker tracker = ((AppController)getActivity().getApplication()).getTracker();
+        // Builder parameters can overwrite the screen name set on the tracker.
+        tracker.setScreenName("SettingFragment");
+        tracker.send(new HitBuilders.AppViewBuilder().build());
     }
 }

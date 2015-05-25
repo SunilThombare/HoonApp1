@@ -41,6 +41,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'org.codehaus.jackson:jackson-mapper-asl:1.8.5'
     //compile 'com.google.android.gms:play-services:6.5.87'
+    compile 'com.google.android.gms:play-services:7.3.0'
     //compile files('libs/volley.jar')
     //compile files('libs/android-support-v4.jar')
     //compile 'com.viewpagerindicator:library:2.4.1'

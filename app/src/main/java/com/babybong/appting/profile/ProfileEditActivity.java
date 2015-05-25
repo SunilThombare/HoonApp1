@@ -2,53 +2,28 @@ package com.babybong.appting.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.babybong.appting.GcmMainActivity;
-import com.babybong.appting.ListMainActivity;
 
 import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.BaseActivity;
-import com.babybong.appting.login.SignupActivity;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 /**
  *  프로필 수정 메인화면
  */
 public class ProfileEditActivity extends BaseActivity {
-    Button imageEditBtn;
-    Button basicEditBtn;
-    Button selfIntroductionEditBtn;
-    Button selfIntroductionChoiceEditBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
-
-        /*imageEditBtn = (Button) findViewById(R.id.image_edit_btn);
-        basicEditBtn = (Button) findViewById(R.id.basic_edit_btn);
-        selfIntroductionEditBtn = (Button) findViewById(R.id.self_introduction_edit_btn);
-        selfIntroductionChoiceEditBtn = (Button) findViewById(R.id.self_introduction_choice_edit_btn);*/
+        onCreateTracker();
     }
 
     @Override
@@ -59,7 +34,7 @@ public class ProfileEditActivity extends BaseActivity {
     }
 
     public void onClickImageEditBtn(View view) {
-        nextActivity(GcmMainActivity.class);
+        nextActivity(ImageEditActivity.class);
     }
 
     public void onClickBasicEditBtn(View view) {
@@ -79,4 +54,22 @@ public class ProfileEditActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    private void onCreateTracker() {
+        Tracker tracker = ((AppController)getApplication()).getTracker();
+        // Builder parameters can overwrite the screen name set on the tracker.
+        tracker.setScreenName("ProfileEditActivity");
+        tracker.send(new HitBuilders.AppViewBuilder().build());
+    }
 }

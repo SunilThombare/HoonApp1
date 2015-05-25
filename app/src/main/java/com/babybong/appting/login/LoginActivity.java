@@ -16,6 +16,9 @@ import com.babybong.appting.BaseActivity;
 import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.login.service.LoginService;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 /**
  * 로그인
@@ -28,6 +31,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        onCreateTracker();
 
         inputMail = (EditText) findViewById(R.id.input_mail);
         inputPw = (EditText) findViewById(R.id.input_PW);
@@ -96,5 +100,24 @@ public class LoginActivity extends BaseActivity {
         final String pw = inputPw.getText().toString();
         LoginService loginService = new LoginService(LoginActivity.this);
         loginService.loginProcess(mail, pw);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    private void onCreateTracker() {
+        Tracker tracker = ((AppController)getApplication()).getTracker();
+        // Builder parameters can overwrite the screen name set on the tracker.
+        tracker.setScreenName("LoginActivity");
+        tracker.send(new HitBuilders.AppViewBuilder().build());
     }
 }

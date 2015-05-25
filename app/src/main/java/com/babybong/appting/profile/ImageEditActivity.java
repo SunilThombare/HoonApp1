@@ -1,9 +1,12 @@
 package com.babybong.appting.profile;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -26,12 +29,27 @@ import java.util.Map;
  */
 public class ImageEditActivity extends ImageSelectHelperActivity {
 
+    private ImageView ivImageSelected;
+    private ImageView ivImageSelected2;
+    private ImageView ivImageSelected3;
+    private ImageView ivImageSelected4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_edit);
 
-        findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+        ivImageSelected  = (ImageView)findViewById(R.id.ivImageSelected);
+        ivImageSelected2 = (ImageView)findViewById(R.id.ivImageSelected2);
+        ivImageSelected3 = (ImageView)findViewById(R.id.ivImageSelected3);
+        ivImageSelected4 = (ImageView)findViewById(R.id.ivImageSelected4);
+
+        ivImageSelected.setOnClickListener(onClickListener);
+        ivImageSelected2.setOnClickListener(onClickListener);
+        ivImageSelected3.setOnClickListener(onClickListener);
+        ivImageSelected4.setOnClickListener(onClickListener);
+
+        /*findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 //setImageSizeBoundary(400); // optional. default is 500.
@@ -39,22 +57,64 @@ public class ImageEditActivity extends ImageSelectHelperActivity {
                 //setCustomButtons(btnGallery, btnCamera, btnCancel); // you can set these buttons.
                 startSelectImage();
             }
-        });
-        getSelectedImageFile(); // extract selected & saved image file.
+        });*/
+        //getSelectedImageFile(); // extract selected & saved image file.
     }
 
-    public void onClickSaveBtn(View view) {
-        test();
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.ivImageSelected:
+                    //setImageSizeBoundary(400); // optional. default is 500.
+                    setCropOption(1, 1);  // optional. default is no crop.
+                    //setCustomButtons(btnGallery, btnCamera, btnCancel); // you can set these buttons.
+                    startSelectImage(R.id.ivImageSelected);
+                    break;
+                case R.id.ivImageSelected2:
+                    setCropOption(1, 1);  // optional. default is no crop.
+                    startSelectImage(R.id.ivImageSelected2);
+                    break;
+                case R.id.ivImageSelected3:
+                    setCropOption(1, 1);  // optional. default is no crop.
+                    startSelectImage(R.id.ivImageSelected3);
+                    break;
+                case R.id.ivImageSelected4:
+                    setCropOption(1, 1);  // optional. default is no crop.
+                    startSelectImage(R.id.ivImageSelected4);
+                    break;
+            }
+        }
+    };
+
+    /*public void onClickSaveBtn(View view) {
+        imageUpload();
+    }*/
+
+    @Override
+    public void imageUploadToServer(int selectedImageResourceId) {
+        Log.d("TAG", "selectedImageResourceId : " + selectedImageResourceId);
+        imageUpload(selectedImageResourceId);
     }
 
-    private void test() {
+    /**
+     * 프로필 이미지 서버로 전송
+     */
+    private void imageUpload(int selectedImageResourceId) {
         String mail = DataStoredService.getStoredData(ImageEditActivity.this, DataStoredService.STORE_MAIL);
         String url = AppController.API_URL + "/members/image/upload";
         File file = getSelectedImageFile();
+        Log.d("TAG", ">> getName : " + file.getName());
         PhotoMultipartRequest request = new PhotoMultipartRequest(url, errorListener, successListener, file);
+        Log.d("TAG", ">> getName 2 ");
         request.addTextBody("mail", mail);
+        request.addTextBody("imageNumber", getImageNumber(selectedImageResourceId));
+        Log.d("TAG", ">> getName 3 ");
         AppController.getInstance().addToRequestQueue(request);
+        Log.d("TAG", ">> getName 4 ");
     }
+
+
 
     public Map<String, String> getHeaders() {
         Map<String, String> headers = new HashMap<String, String>();
@@ -66,7 +126,7 @@ public class ImageEditActivity extends ImageSelectHelperActivity {
     Response.Listener successListener = new Response.Listener<JSONObject>() {
         @Override
         public void onResponse(JSONObject response) {
-
+            Log.d("SUCCESS", "SUCCESS !!!!!");
         }
     };
 
@@ -74,6 +134,7 @@ public class ImageEditActivity extends ImageSelectHelperActivity {
         @Override
         public void onErrorResponse(VolleyError error) {
             //alertMessage("잠시후 다시 시도해주세요.");
+            Log.e("SUCCESS", "error !!!!!" + error.getMessage());
             VolleyLog.e("Error: ", "에러 : " + error.toString());
             error.printStackTrace();
         }

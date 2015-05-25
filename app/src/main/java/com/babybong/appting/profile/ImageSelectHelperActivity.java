@@ -37,13 +37,15 @@ import com.babybong.appting.R;
  * @author kein
  *
  */
-public class ImageSelectHelperActivity extends Activity {
+public class ImageSelectHelperActivity extends Activity implements ImageUpload {
     /** Buttons for selector dialog */
     private View mBtnGallery = null, mBtnCamera = null, mBtnCancel = null;
 
     private final int REQ_CODE_PICK_GALLERY = 900001;
     private final int REQ_CODE_PICK_CAMERA = 900002;
     private final int REQ_CODE_PICK_CROP = 900003;
+
+    private int selectedImageResourceId;
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -55,6 +57,24 @@ public class ImageSelectHelperActivity extends Activity {
         if (drawable != null) {
             Bitmap bitmap = drawable.getBitmap();
             savedInstanceState.putParcelable("bitmap", bitmap);
+        }
+
+        BitmapDrawable drawable2 = (BitmapDrawable) ((ImageView) findViewById(R.id.ivImageSelected2)).getDrawable();
+        if (drawable2 != null) {
+            Bitmap bitmap = drawable.getBitmap();
+            savedInstanceState.putParcelable("bitmap2", bitmap);
+        }
+
+        BitmapDrawable drawable3 = (BitmapDrawable) ((ImageView) findViewById(R.id.ivImageSelected3)).getDrawable();
+        if (drawable3 != null) {
+            Bitmap bitmap = drawable.getBitmap();
+            savedInstanceState.putParcelable("bitmap3", bitmap);
+        }
+
+        BitmapDrawable drawable4 = (BitmapDrawable) ((ImageView) findViewById(R.id.ivImageSelected4)).getDrawable();
+        if (drawable4 != null) {
+            Bitmap bitmap = drawable.getBitmap();
+            savedInstanceState.putParcelable("bitmap4", bitmap);
         }
     }
 
@@ -68,12 +88,27 @@ public class ImageSelectHelperActivity extends Activity {
         if (bm != null) {
             ((ImageView) findViewById(R.id.ivImageSelected)).setImageBitmap(bm);
         }
+
+        Bitmap bm2 = (Bitmap) savedInstanceState.getParcelable("bitmap2");
+        if (bm2 != null) {
+            ((ImageView) findViewById(R.id.ivImageSelected2)).setImageBitmap(bm2);
+        }
+
+        Bitmap bm3 = (Bitmap) savedInstanceState.getParcelable("bitmap3");
+        if (bm3 != null) {
+            ((ImageView) findViewById(R.id.ivImageSelected3)).setImageBitmap(bm3);
+        }
+
+        Bitmap bm4 = (Bitmap) savedInstanceState.getParcelable("bitmap4");
+        if (bm4 != null) {
+            ((ImageView) findViewById(R.id.ivImageSelected4)).setImageBitmap(bm4);
+        }
     }
 
     /**
      * Call this to start!
      */
-    public void startSelectImage() {
+    public void startSelectImage(int id) {
         if (!checkWriteExternalPermission()) {
             showAlert("we need android.permission.WRITE_EXTERNAL_STORAGE");
             return;
@@ -82,10 +117,11 @@ public class ImageSelectHelperActivity extends Activity {
             showAlert("Check External Storage.");
             return;
         }
-        if (findViewById(R.id.ivImageSelected) == null) {
+        if (findViewById(id) == null) {
             showAlert("Your layout should have ImageView name as ivImageSelected.");
             return;
         }
+        selectedImageResourceId = id;
         if (mBtnGallery == null) {
             setDefaultButtons();
         }
@@ -172,7 +208,7 @@ public class ImageSelectHelperActivity extends Activity {
         if (!path.exists()) {
             path.mkdirs();
         }
-        File file = new File(path, "tempimage.png");
+        File file = new File(path, getImageNumber(selectedImageResourceId) + "_tempimage.png");
         return file;
     }
 
@@ -271,7 +307,12 @@ public class ImageSelectHelperActivity extends Activity {
 
         // show image on ImageView
         Bitmap bm = BitmapFactory.decodeFile(getTempImageFile().getAbsolutePath());
-        ((ImageView) findViewById(R.id.ivImageSelected)).setImageBitmap(bm);
+        ((ImageView) findViewById(selectedImageResourceId)).setImageBitmap(bm);
+
+        imageUploadToServer(selectedImageResourceId);
+    }
+
+    public void imageUploadToServer(int selectedImageResourceId) {
     }
 
     private void saveBitmapToFile(Bitmap bitmap) {
@@ -469,5 +510,19 @@ public class ImageSelectHelperActivity extends Activity {
             i.setComponent(new ComponentName(res.activityInfo.packageName, res.activityInfo.name));
             startActivityForResult(i, REQ_CODE_PICK_CROP);
         }
+    }
+
+    String getImageNumber(int selectedImageResourceId) {
+        switch (selectedImageResourceId) {
+            case R.id.ivImageSelected:
+                return "1";
+            case R.id.ivImageSelected2:
+                return "2";
+            case R.id.ivImageSelected3:
+                return "3";
+            case R.id.ivImageSelected4:
+                return "4";
+        }
+        return "1";
     }
 }
