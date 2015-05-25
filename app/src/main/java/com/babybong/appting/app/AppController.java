@@ -38,7 +38,7 @@ public class AppController extends Application {
 		analytics.setLocalDispatchPeriod(1800);
 
 		//tracker = analytics.newTracker("UA-63340678-1"); // Replace with actual tracker/property Id
-		tracker = analytics.newTracker(R.xml.global_tracker);
+		tracker = analytics.newTracker(R.xml.global_tracker1);
 		tracker.enableExceptionReporting(true);
 		tracker.enableAdvertisingIdCollection(true);
 		tracker.enableAutoActivityTracking(true);*/

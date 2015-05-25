@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="TypographyDashes">
+    <!-- The application name. Defaults to name specified for the application label -->
+    <string name="ga_logLevel">verbose</string>
+
+    <!-- The application version. Defaults to android:versionName specified in the AndroidManifest.xml -->
+    <bool name="ga_autoActivityTracking">true</bool>
+
+    <screenName name="com.babybong.appting.SplashActivity">SplashActivity</screenName>
+    <screenName name="com.babybong.appting.profile.ProfileEditActivity">ProfileEditActivity</screenName>
+    <screenName name="com.babybong.appting.login.LoginActivity">LoginActivity</screenName>
+
+    <screenName name="com.babybong.appting.main.MyProfileFragment">MyProfileFragment</screenName>
+    <screenName name="com.babybong.appting.main.SettingFragment">SettingFragment</screenName>
+    <string name="ga_trackingId">UA-63340678-1</string>
+</resources>
