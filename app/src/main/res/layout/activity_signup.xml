@@ -27,8 +27,20 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:layout_gravity="center_vertical"
+            android:text="- 프로필 > 사진 > 스토리 > 관심사 4단계입니다.\n- 싱글이 아닐경우 법적 조치가 취해질 수 있습니다."
+            android:lineSpacingExtra="10dp"
+            style="@style/editTextTextStyle"/>
         <FrameLayout
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -79,7 +91,7 @@
             </EditText>
 
             <TextView
-                android:id="@+id/prefix"
+                android:id="@+id/prefix2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
@@ -95,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/input_PW2"
+                android:id="@+id/input_PW_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:password="true"
@@ -111,7 +123,7 @@
             </EditText>
 
             <TextView
-                android:id="@+id/prefix"
+                android:id="@+id/prefix3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
@@ -121,6 +133,24 @@
                 android:text="패스워드확인"
                 style="@style/labelTextStyle"/>
         </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp">
+            <CheckBox
+                android:id="@+id/termsCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="8dp"
+                android:layout_gravity="center_vertical"
+                android:text="이용약관과 개인정보 이용방침을 확인해주세요."
+                android:lineSpacingExtra="10dp"
+                style="@style/editTextTextStyle"/>
+        </LinearLayout>
         <Button
             android:id="@+id/signup_btn"
             android:layout_width="match_parent"

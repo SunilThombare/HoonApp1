@@ -34,7 +34,7 @@ import com.babybong.appting.model.MemberDto;
  * 회원가입
  */
 public class SignupActivity extends BaseActivity {
-    EditText inputEmail, inputPw;
+    EditText inputEmail, inputPw, inputPwConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class SignupActivity extends BaseActivity {
 
         inputEmail = (EditText) findViewById(R.id.input_EMAIL);
         inputPw = (EditText) findViewById(R.id.input_PW);
-
+        inputPwConfirm = (EditText) findViewById(R.id.input_PW_confirm);
     }
 
     @Override
@@ -59,11 +59,26 @@ public class SignupActivity extends BaseActivity {
      */
     public void onClickSignup(View view) {
         Log.d("login", "가입하기 클릭!!");
+        if (!validPassword()) {
+            return;
+        }
         try {
             registMember();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean validPassword() {
+        final String pwd = inputPw.getText().toString();
+        final String pwdConfrim = inputPwConfirm.getText().toString();
+        if (!pwd.equals(pwdConfrim)) {
+            alertMessage("패스워드가 일치하지 않습니다. \n다시 입력하세요.");
+            inputPwConfirm.setFocusable(true);
+            inputPwConfirm.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     private void registMember() throws Exception {
