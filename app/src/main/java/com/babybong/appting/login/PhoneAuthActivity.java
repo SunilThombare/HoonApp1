@@ -1,12 +1,18 @@
 package com.babybong.appting.login;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
@@ -17,6 +23,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -47,9 +54,9 @@ import com.babybong.appting.model.MemberDto;
 /**
  * 폰인증
  */
-public class PhoneAuthActivity extends BaseActivity {
+public class PhoneAuthActivity extends BaseActivity  implements NumberPicker.OnValueChangeListener {
     private EditText inputNmae;
-    private EditText inputYear, inputMonth, inputDay;
+    private EditText inputBirthday;
     private RadioGroup radioGroupSex;
     private EditText inputPhoneNumber1, inputPhoneNumber2, inputPhoneNumber3;
     private Button phoneAuthBtn;
@@ -59,18 +66,23 @@ public class PhoneAuthActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phoneauth);
         inputNmae = (EditText) findViewById(R.id.input_name);
-        inputYear = (EditText) findViewById(R.id.input_year);
-        inputMonth = (EditText) findViewById(R.id.input_month);
-        inputDay = (EditText) findViewById(R.id.input_day);
+        inputBirthday = (EditText) findViewById(R.id.input_birthday);
+        inputBirthday.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    mMainDialog = createDialog();
+                    mMainDialog.show();
+                }
+            }
+        });
+
         radioGroupSex = (RadioGroup) findViewById(R.id.radiogroup_sex);
         inputPhoneNumber1 = (EditText) findViewById(R.id.input_phone_number1);
         inputPhoneNumber2 = (EditText) findViewById(R.id.input_phone_number2);
         inputPhoneNumber3 = (EditText) findViewById(R.id.input_phone_number3);
 
         phoneAuthBtn = (Button) findViewById(R.id.phone_auth_btn);
-
-        editTextListener(inputYear, inputMonth, 4);
-        editTextListener(inputMonth, inputDay, 2);
 
         editTextListener(inputPhoneNumber1, inputPhoneNumber2, 3);
         editTextListener(inputPhoneNumber2, inputPhoneNumber3, 4);
@@ -142,9 +154,7 @@ public class PhoneAuthActivity extends BaseActivity {
 
     private void registMemberPrivateInfo() throws Exception {
         final String name = inputNmae.getText().toString();
-        final String year = inputYear.getText().toString();
-        final String month = inputMonth.getText().toString();
-        final String day = inputDay.getText().toString();
+        final String birthday = inputBirthday.getText().toString();
 
         int checkedId = radioGroupSex.getCheckedRadioButtonId();
         RadioButton rBtn = (RadioButton)findViewById(checkedId);
@@ -161,7 +171,7 @@ public class PhoneAuthActivity extends BaseActivity {
         MemberDto memberDto = new MemberDto();
         memberDto.setMail(mail);
         memberDto.setName(name);
-        memberDto.setBirthday(year + month + day);
+        memberDto.setBirthday(birthday);
         memberDto.setSex(sex);
         memberDto.setPhone(phone1 + phone2 + phone3);
         memberDto.setUpdateAt(new Date());
@@ -288,5 +298,101 @@ public class PhoneAuthActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    private Dialog mMainDialog;
 
+    public void onClickBirthdayEditText(View view) {
+        mMainDialog = createDialog();
+        mMainDialog.show();
+    }
+
+    private AlertDialog createDialog() {
+        final View innerView = getLayoutInflater().inflate(R.layout.dialog, null);
+        final AlertDialog.Builder ab = new AlertDialog.Builder(this);
+        ab.setTitle("생년월일");
+        ab.setView(innerView);
+
+        final NumberPicker year = (NumberPicker) innerView.findViewById(R.id.numberPicker1);
+        final NumberPicker month = (NumberPicker) innerView.findViewById(R.id.numberPicker2);
+        final NumberPicker day = (NumberPicker) innerView.findViewById(R.id.numberPicker3);
+
+        setDividerColor(year, Color.GREEN);
+        year.setMaxValue(2000); // max value 100
+        year.setMinValue(1960);   // min value 0
+        year.setWrapSelectorWheel(true);
+        year.setOnValueChangedListener(this);
+
+        setDividerColor(month, Color.GREEN);
+        month.setMaxValue(12); // max value 100
+        month.setMinValue(1);   // min value 0
+        month.setWrapSelectorWheel(true);
+        month.setOnValueChangedListener(this);
+
+        setDividerColor(day, Color.GREEN);
+        day.setMaxValue(31); // max value 100
+        day.setMinValue(1);   // min value 0
+        day.setWrapSelectorWheel(true);
+        day.setOnValueChangedListener(this);
+
+
+        ab.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                Log.d("picker", "### >>> " + String.valueOf(year.getValue()) + ":" + String.valueOf(month.getValue()) + ":" + String.valueOf(day.getValue()));
+                String stryear = String.valueOf(year.getValue());
+                String strmonth = String.valueOf(month.getValue());
+                if (strmonth.length() == 1) {
+                    strmonth = "0" + strmonth;
+                }
+                String strday = String.valueOf(day.getValue());
+                if (strday.length() == 1) {
+                    strday = "0" + strday;
+                }
+                inputBirthday.setText(stryear + strmonth + strday);
+                setDismiss(mMainDialog);
+            }
+        });
+
+        ab.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                setDismiss(mMainDialog);
+            }
+        });
+
+        return  ab.create();
+    }
+
+    private void setDismiss(Dialog dialog){
+        if(dialog!=null&&dialog.isShowing())
+            dialog.dismiss();
+    }
+
+    @Override
+    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+
+        Log.i("value is", "" + newVal);
+
+    }
+
+    private void setDividerColor(NumberPicker picker, int color) {
+
+        java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
+        for (java.lang.reflect.Field pf : pickerFields) {
+            if (pf.getName().equals("mSelectionDivider")) {
+                pf.setAccessible(true);
+                try {
+                    ColorDrawable colorDrawable = new ColorDrawable(color);
+                    pf.set(picker, colorDrawable);
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                } catch (Resources.NotFoundException e) {
+                    e.printStackTrace();
+                }
+                catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+    }
 }

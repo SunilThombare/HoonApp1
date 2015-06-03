@@ -40,7 +40,7 @@ public class PickerActivity extends BaseActivity implements NumberPicker.OnValue
 
     public void show() {
 
-        final Dialog d = new Dialog(PickerActivity.this, AlertDialog.THEME_HOLO_LIGHT);
+        /*final Dialog d = new Dialog(PickerActivity.this, AlertDialog.THEME_HOLO_LIGHT);
         d.setTitle("NumberPicker");
         d.setContentView(R.layout.dialog);
         Button b1 = (Button) d.findViewById(R.id.button1);
@@ -65,7 +65,7 @@ public class PickerActivity extends BaseActivity implements NumberPicker.OnValue
                 d.dismiss(); // dismiss the dialog
             }
         });
-        d.show();
+        d.show();*/
 
 
     }
