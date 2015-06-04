@@ -158,7 +158,12 @@ public class PhoneAuthActivity extends BaseActivity  implements NumberPicker.OnV
 
         int checkedId = radioGroupSex.getCheckedRadioButtonId();
         RadioButton rBtn = (RadioButton)findViewById(checkedId);
-        final String sex = rBtn.getText().toString();
+        String sex = rBtn.getText().toString();
+        if (sex.equals("남자")) {
+            sex = "M";
+        } else {
+            sex = "F";
+        }
 
         final String phone1 = inputPhoneNumber1.getText().toString();
         final String phone2 = inputPhoneNumber2.getText().toString();

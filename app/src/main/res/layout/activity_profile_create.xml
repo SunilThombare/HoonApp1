@@ -1,0 +1,163 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignupActivity" >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_awesome_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="프로필"
+            style="@style/titleTextStyle"
+            android:layout_gravity="center"
+            android:id="@+id/toolbar_title" />
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:layout_gravity="center_vertical"
+            android:text="- 본인 프로필을 정확기 기재해 주세요."
+            android:lineSpacingExtra="10dp"
+            style="@style/editTextTextStyle"/>
+        <FrameLayout
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/input_EMAIL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:hint="앱에서 사용하는 별명입니다."
+                style="@style/editTextTextStyle"
+                android:maxLength="20"
+                android:paddingBottom="16dp"
+                android:paddingStart="78dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp">
+                <requestFocus/>
+            </EditText>
+
+            <TextView
+                android:id="@+id/prefix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:layout_gravity="center_vertical"
+                android:text="닉네임"
+                style="@style/labelTextStyle"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <EditText
+                android:id="@+id/input_PW"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:password="true"
+                android:singleLine="true"
+                android:hint="6글자 이상 입력하세요."
+                style="@style/editTextTextStyle"
+                android:labelFor="@+id/editText"
+                android:maxLength="12"
+                android:paddingBottom="16dp"
+                android:paddingStart="78dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/prefix2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:layout_gravity="center_vertical"
+                android:text="직업 or 직장"
+                style="@style/labelTextStyle"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <EditText
+                android:id="@+id/input_PW_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:password="true"
+                android:singleLine="true"
+                android:hint="다시한번 입력하세요."
+                style="@style/editTextTextStyle"
+                android:labelFor="@+id/editText"
+                android:maxLength="12"
+                android:paddingBottom="16dp"
+                android:paddingStart="100dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/prefix3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:layout_gravity="center_vertical"
+                android:text="패스워드확인"
+                style="@style/labelTextStyle"/>
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp">
+            <CheckBox
+                android:id="@+id/termsCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="8dp"
+                android:layout_gravity="center_vertical"
+                android:text="이용약관과 개인정보 이용방침을 확인해주세요."
+                android:lineSpacingExtra="10dp"
+                style="@style/editTextTextStyle"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/signup_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="가입하기"
+            android:onClick="onClickSignup" />
+    </LinearLayout>
+
+</LinearLayout>
