@@ -19,6 +19,9 @@
             android:layout_gravity="center"
             android:id="@+id/toolbar_title" />
     </android.support.v7.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,11 +43,11 @@
             android:lineSpacingExtra="10dp"
             style="@style/editTextTextStyle"/>
         <FrameLayout
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/input_EMAIL"
+                android:id="@+id/inputNickNmae"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -52,7 +55,7 @@
                 style="@style/editTextTextStyle"
                 android:maxLength="20"
                 android:paddingBottom="16dp"
-                android:paddingStart="78dp"
+                android:paddingStart="56dp"
                 android:paddingEnd="8dp"
                 android:paddingTop="8dp">
                 <requestFocus/>
@@ -75,17 +78,49 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/input_PW"
+                android:id="@+id/inputArea1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:password="true"
+                android:editable="false"
                 android:singleLine="true"
-                android:hint="6글자 이상 입력하세요."
+                android:hint="지역선택"
                 style="@style/editTextTextStyle"
                 android:labelFor="@+id/editText"
                 android:maxLength="12"
                 android:paddingBottom="16dp"
-                android:paddingStart="78dp"
+                android:paddingStart="56dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp"
+                android:onClick="onClickArea1Btn">
+            </EditText>
+
+            <TextView
+                android:id="@+id/prefix6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:layout_gravity="center_vertical"
+                android:text="지역"
+                style="@style/labelTextStyle"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <EditText
+                android:id="@+id/inputJob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:hint="직업이나 직장명을 입력하세요."
+                style="@style/editTextTextStyle"
+                android:labelFor="@+id/editText"
+                android:maxLength="12"
+                android:paddingBottom="16dp"
+                android:paddingStart="96dp"
                 android:paddingEnd="8dp"
                 android:paddingTop="8dp" >
             </EditText>
@@ -101,63 +136,188 @@
                 android:text="직업 or 직장"
                 style="@style/labelTextStyle"/>
         </FrameLayout>
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
             <EditText
-                android:id="@+id/input_PW_confirm"
+                android:id="@+id/inputCharacter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:password="true"
-                android:singleLine="true"
-                android:hint="다시한번 입력하세요."
+                android:editable="false"
+                android:hint="2개이상 선택하세요."
                 style="@style/editTextTextStyle"
                 android:labelFor="@+id/editText"
-                android:maxLength="12"
                 android:paddingBottom="16dp"
-                android:paddingStart="100dp"
+                android:paddingStart="56dp"
                 android:paddingEnd="8dp"
-                android:paddingTop="8dp" >
+                android:paddingTop="8dp"
+                android:onClick="onClickCharacter">
             </EditText>
 
             <TextView
-                android:id="@+id/prefix3"
+                android:id="@+id/prefix8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:layout_gravity="center_vertical"
-                android:text="패스워드확인"
+                android:text="성격"
                 style="@style/labelTextStyle"/>
         </FrameLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp">
-            <CheckBox
-                android:id="@+id/termsCheck"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/terms"
-                android:layout_width="wrap_content"
+            android:layout_marginTop="20dp">
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingEnd="8dp"
-                android:layout_gravity="center_vertical"
-                android:text="이용약관과 개인정보 이용방침을 확인해주세요."
-                android:lineSpacingExtra="10dp"
-                style="@style/editTextTextStyle"/>
+                android:layout_weight="1"
+                android:paddingRight="8dp"
+                >
+                <EditText
+                    android:id="@+id/inputBloodtype"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:singleLine="true"
+                    android:hint="선택하세요."
+                    style="@style/editTextTextStyle"
+                    android:labelFor="@+id/editText"
+                    android:maxLength="12"
+                    android:paddingBottom="16dp"
+                    android:paddingStart="56dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="8dp"
+                    android:onClick="onClickBloodTypeBtn">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/prefix3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="혈액형"
+                    style="@style/labelTextStyle"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/inputReligion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:singleLine="true"
+                    android:hint="선택하세요."
+                    style="@style/editTextTextStyle"
+                    android:labelFor="@+id/editText"
+                    android:maxLength="12"
+                    android:paddingBottom="16dp"
+                    android:paddingStart="56dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="8dp"
+                    android:onClick="onClickReligionBtn">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/prefix4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="종교"
+                    style="@style/labelTextStyle"/>
+            </FrameLayout>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingRight="8dp">
+                <EditText
+                    android:id="@+id/inputHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:singleLine="true"
+                    android:hint="선택하세요."
+                    style="@style/editTextTextStyle"
+                    android:labelFor="@+id/editText"
+                    android:maxLength="12"
+                    android:paddingBottom="16dp"
+                    android:paddingStart="56dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="8dp"
+                    android:onClick="onClickHeight">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/prefix5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="신장"
+                    style="@style/labelTextStyle"/>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <EditText
+                    android:id="@+id/inputBodyType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:singleLine="true"
+                    android:hint="선택하세요."
+                    style="@style/editTextTextStyle"
+                    android:labelFor="@+id/editText"
+                    android:maxLength="12"
+                    android:paddingBottom="16dp"
+                    android:paddingStart="56dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="8dp"
+                    android:onClick="onClickBodyType">
+                </EditText>
+
+                <TextView
+                    android:id="@+id/prefix7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="체형"
+                    style="@style/labelTextStyle"/>
+            </FrameLayout>
+        </LinearLayout>
+
         <Button
-            android:id="@+id/signup_btn"
+            android:id="@+id/save_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="가입하기"
-            android:onClick="onClickSignup" />
-    </LinearLayout>
+            android:text="저장하기"
+            android:onClick="onClickSaveBtn" />
 
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

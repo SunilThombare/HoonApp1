@@ -54,7 +54,7 @@ import com.babybong.appting.model.MemberDto;
 /**
  * 폰인증
  */
-public class PhoneAuthActivity extends BaseActivity  implements NumberPicker.OnValueChangeListener {
+public class PhoneAuthActivity extends BaseActivity implements NumberPicker.OnValueChangeListener {
     private EditText inputNmae;
     private EditText inputBirthday;
     private RadioGroup radioGroupSex;
@@ -367,11 +367,6 @@ public class PhoneAuthActivity extends BaseActivity  implements NumberPicker.OnV
         return  ab.create();
     }
 
-    private void setDismiss(Dialog dialog){
-        if(dialog!=null&&dialog.isShowing())
-            dialog.dismiss();
-    }
-
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
@@ -379,25 +374,5 @@ public class PhoneAuthActivity extends BaseActivity  implements NumberPicker.OnV
 
     }
 
-    private void setDividerColor(NumberPicker picker, int color) {
 
-        java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
-        for (java.lang.reflect.Field pf : pickerFields) {
-            if (pf.getName().equals("mSelectionDivider")) {
-                pf.setAccessible(true);
-                try {
-                    ColorDrawable colorDrawable = new ColorDrawable(color);
-                    pf.set(picker, colorDrawable);
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (Resources.NotFoundException e) {
-                    e.printStackTrace();
-                }
-                catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
-        }
-    }
 }

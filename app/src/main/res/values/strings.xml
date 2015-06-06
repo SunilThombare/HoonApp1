@@ -6,4 +6,41 @@
     <string name="hello_world">Hello world!</string>
     <string name="send">보내기</string>
     <string name="clear">삭제</string>
+
+    <string name="bodytype1">마른</string>
+    <string name="bodytype2">보통</string>
+    <string name="bodytype3">약간살찐</string>
+    <string name="bodytype4">뚱뚱한</string>
+    <string name="bodytype5">건장한</string>
+    <string name="bodytype6">근육질</string>
+
+    <string name="character1">지적인</string>
+    <string name="character2">차분한</string>
+    <string name="character3">개그감있는</string>
+    <string name="character4">낙천적인</string>
+    <string name="character5">감성적인</string>
+    <string name="character6">내성적인</string>
+    <string name="character7">외향적인</string>
+    <string name="character8">친절한</string>
+    <string name="character9">낯을가리는</string>
+    <string name="character10">개성있는</string>
+    <string name="character11">활발한</string>
+    <string name="character12">친화력있는</string>
+
+    <sttring name="job1">경영.사무</sttring>
+    <sttring name="job2">영업.고객상담</sttring>
+    <sttring name="job3">IT.인터넷</sttring>
+    <sttring name="job4">디자인</sttring>
+    <sttring name="job5">전문직</sttring>
+    <sttring name="job6">의료</sttring>
+    <sttring name="job7">생산.제조</sttring>
+    <sttring name="job8">건설</sttring>
+    <sttring name="job9">미디어</sttring>
+    <sttring name="job10">유통.무역</sttring>
+    <sttring name="job11">교육</sttring>
+    <sttring name="job12">공무원</sttring>
+    <sttring name="job13">군인.경찰</sttring>
+    <sttring name="job14">운동.스포츠</sttring>
+    <sttring name="job15">문화.예술.종교</sttring>
+    <sttring name="job16">기타</sttring>
 </resources>
