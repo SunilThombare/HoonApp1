@@ -341,7 +341,7 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
     }
 
     private AlertDialog createBodyTypeDialog() {
-        final View innerView = getLayoutInflater().inflate(R.layout.dialog_bodytype, null);
+        final View innerView = getLayoutInflater().inflate(R.layout.dialog_body_type, null);
         final AlertDialog.Builder ab = new AlertDialog.Builder(this);
         ab.setTitle("체형");
         ab.setView(innerView);

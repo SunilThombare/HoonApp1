@@ -27,20 +27,20 @@
     <string name="character11">활발한</string>
     <string name="character12">친화력있는</string>
 
-    <sttring name="job1">경영.사무</sttring>
-    <sttring name="job2">영업.고객상담</sttring>
-    <sttring name="job3">IT.인터넷</sttring>
-    <sttring name="job4">디자인</sttring>
-    <sttring name="job5">전문직</sttring>
-    <sttring name="job6">의료</sttring>
-    <sttring name="job7">생산.제조</sttring>
-    <sttring name="job8">건설</sttring>
-    <sttring name="job9">미디어</sttring>
-    <sttring name="job10">유통.무역</sttring>
-    <sttring name="job11">교육</sttring>
-    <sttring name="job12">공무원</sttring>
-    <sttring name="job13">군인.경찰</sttring>
-    <sttring name="job14">운동.스포츠</sttring>
-    <sttring name="job15">문화.예술.종교</sttring>
-    <sttring name="job16">기타</sttring>
+    <string name="job1">경영.사무</string>
+    <string name="job2">영업.고객상담</string>
+    <string name="job3">IT.인터넷</string>
+    <string name="job4">디자인</string>
+    <string name="job5">전문직</string>
+    <string name="job6">의료</string>
+    <string name="job7">생산.제조</string>
+    <string name="job8">건설</string>
+    <string name="job9">미디어</string>
+    <string name="job10">유통.무역</string>
+    <string name="job11">교육</string>
+    <string name="job12">공무원</string>
+    <string name="job13">군인.경찰</string>
+    <string name="job14">운동.스포츠</string>
+    <string name="job15">문화.예술.종교</string>
+    <string name="job16">기타</string>
 </resources>
