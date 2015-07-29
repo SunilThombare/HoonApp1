@@ -27,6 +27,7 @@ import java.util.Map;
 import com.babybong.appting.BaseActivity;
 import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
+import com.babybong.appting.common.ApiAddress;
 import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.model.MemberDto;
 
@@ -84,7 +85,6 @@ public class SignupActivity extends BaseActivity {
     private void registMember() throws Exception {
         final String email = inputEmail.getText().toString();
         final String pwd = inputPw.getText().toString();
-        String url = AppController.API_URL + "/members"; //멤버등록 url
 
         MemberDto memberDto = new MemberDto();
         memberDto.setMail(email);
@@ -101,7 +101,7 @@ public class SignupActivity extends BaseActivity {
         } catch (JSONException e) {
             Log.e("error", e.getMessage());
         }*/
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, ApiAddress.MEMBER_CREATE, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

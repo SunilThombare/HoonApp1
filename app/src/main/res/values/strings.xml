@@ -24,7 +24,7 @@
     <string name="character8">친절한</string>
     <string name="character9">낯을가리는</string>
     <string name="character10">개성있는</string>
-    <string name="character11">활발한</string>
+    <string name="character11">냉철한</string>
     <string name="character12">친화력있는</string>
 
     <string name="job1">경영.사무</string>
@@ -43,4 +43,21 @@
     <string name="job14">운동.스포츠</string>
     <string name="job15">문화.예술.종교</string>
     <string name="job16">기타</string>
+
+    <string name="hobby1">음악.영화감상</string>
+    <string name="hobby2">독서.공부</string>
+    <string name="hobby3">운동.스포츠</string>
+    <string name="hobby4">문화관람</string>
+    <string name="hobby5">공예.DIY</string>
+    <string name="hobby6">여행</string>
+    <string name="hobby7">낚시</string>
+    <string name="hobby8">드라이브</string>
+    <string name="hobby9">사진찍기</string>
+    <string name="hobby10">요리</string>
+    <string name="hobby11">수다떨기</string>
+    <string name="hobby12">TV.인터넷</string>
+    <string name="hobby13">게임</string>
+    <string name="hobby14">댄스.노래.악기연주</string>
+    <string name="hobby15">봉사활동</string>
+    <string name="hobby16">기타</string>
 </resources>

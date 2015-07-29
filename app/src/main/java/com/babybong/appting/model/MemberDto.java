@@ -16,17 +16,21 @@ public class MemberDto {
     private String phoneAuth;
     private Integer age;
     private String kakaoId;
-    private String address1;
-    private String address2;
     private Date createAt;
     private Date updateAt;
     //기본사항
     private String nickName;
+    private String address1;
+    private String address2;
     private String job;
-    private String religion; //종교
-    private String bloodType; //혈액형
-    private String selfIntroduction;
     private String hobby;
+    private String character;   //추가
+    private String bloodType; //혈액형
+    private String religion; //종교
+    private String height;      //추가
+    private String bodyType;    //추가
+
+    private String selfIntroduction;
     private String idealType;
     private String myAppeal;
     //선택사항
@@ -268,6 +272,30 @@ public class MemberDto {
 
     public void setImage4(String image4) {
         this.image4 = image4;
+    }
+
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
     }
 }
 

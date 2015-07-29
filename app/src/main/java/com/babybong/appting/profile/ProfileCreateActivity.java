@@ -3,6 +3,7 @@ package com.babybong.appting.profile;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.babybong.appting.BaseActivity;
 import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
+import com.babybong.appting.common.ApiAddress;
+import com.babybong.appting.login.PhoneAuthActivity;
 import com.babybong.appting.login.service.DataStoredService;
+import com.babybong.appting.main.MainActivity;
 import com.babybong.appting.model.MemberDto;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -28,10 +32,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,6 +43,7 @@ import java.util.Set;
 public class ProfileCreateActivity extends BaseActivity implements NumberPicker.OnValueChangeListener {
     private EditText inputNickNmae;
     private EditText inputJob;
+    private EditText inputHobby;
     private EditText inputArea1;
     private EditText inputCharacter;
     private EditText inputBloodtype, inputReligion;
@@ -60,6 +63,7 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
         inputNickNmae = (EditText) findViewById(R.id.inputNickNmae);
         inputArea1 = (EditText) findViewById(R.id.inputArea1);
         inputJob = (EditText) findViewById(R.id.inputJob);
+        inputHobby = (EditText) findViewById(R.id.inputHobby);
         inputCharacter = (EditText) findViewById(R.id.inputCharacter);
         inputBloodtype = (EditText) findViewById(R.id.inputBloodtype);
         inputReligion = (EditText) findViewById(R.id.inputReligion);
@@ -131,6 +135,26 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
                 }
             }
         });
+
+        inputJob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    mMainDialog = createJobDialog();
+                    mMainDialog.show();
+                }
+            }
+        });
+
+        inputHobby.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    mMainDialog = createHobbyDialog();
+                    mMainDialog.show();
+                }
+            }
+        });
     }
 
     public void onClickArea1Btn(View view) {
@@ -160,6 +184,16 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
 
     public void onClickCharacter(View view) {
         mMainDialog = createCharacterDialog();
+        mMainDialog.show();
+    }
+
+    public void onClickJob(View view) {
+        mMainDialog = createJobDialog();
+        mMainDialog.show();
+    }
+
+    public void onClickHobby(View view) {
+        mMainDialog = createHobbyDialog();
         mMainDialog.show();
     }
 
@@ -201,6 +235,10 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
         ab.show();
     }
 
+    /**
+     * 저장하기
+     * @param view
+     */
     public void onClickSaveBtn(View view) {
         try {
             saveBasicProfile();
@@ -213,21 +251,30 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
     private void saveBasicProfile() throws Exception {
         final String mail = DataStoredService.getStoredData(ProfileCreateActivity.this, DataStoredService.STORE_MAIL);
         final String nickName = inputNickNmae.getText().toString();
-        final String job = inputJob.getText().toString();
         final String area1 = inputArea1.getText().toString();
+        final String job = inputJob.getText().toString();
+        final String hobby = inputHobby.getText().toString();  //추가
+        final String character = inputCharacter.getText().toString();  //추가
         final String bloodType = inputBloodtype.getText().toString();
         final String religion = inputReligion.getText().toString();
+        final String height = inputHeight.getText().toString();  //추가
+        final String bodyType = inputBodyType.getText().toString();  //추가
 
         String memberId = mail.split("@")[0];
-        String url = AppController.API_URL + "/members/basicProfile/" + memberId; //멤버개인정보 추가 url
+        //String url = AppController.API_URL + "/members/basicProfile/" + memberId; //멤버개인정보 추가 url
+        String url = ApiAddress.BASIC_PROFILE_CREATE + "/" + memberId;
         Log.d("phoneAuth", "mail : " + mail);
         MemberDto memberDto = new MemberDto();
-        memberDto.setMail(mail);
+        memberDto.setMail(mail); //key
         memberDto.setNickName(nickName);
-        memberDto.setJob(job);
         memberDto.setAddress1(area1);
+        memberDto.setJob(job);
+        memberDto.setHobby(hobby);
+        memberDto.setCharacter(character);
         memberDto.setBloodType(bloodType);
         memberDto.setReligion(religion);
+        memberDto.setHeight(height);
+        memberDto.setBodyType(bodyType);
 
         ObjectMapper mapper = new ObjectMapper();
         final JSONObject jsonObject = new JSONObject(mapper.writeValueAsString(memberDto));
@@ -246,6 +293,7 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
                         JSONObject memberDto = response.getJSONObject("dto");
                         String phoneAuth = memberDto.getString("phoneAuth");
                         dataStore();
+                        nextActivity();
 
                     } else {
                         alertMessage("잠시후 다시 시도하세요.");
@@ -353,12 +401,12 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
         Button bodytype4 = (Button)innerView.findViewById(R.id.bodytype4);
         Button bodytype5 = (Button)innerView.findViewById(R.id.bodytype5);
         Button bodytype6 = (Button)innerView.findViewById(R.id.bodytype6);
-        bodytype1.setOnClickListener(onClickListener);
-        bodytype2.setOnClickListener(onClickListener);
-        bodytype3.setOnClickListener(onClickListener);
-        bodytype4.setOnClickListener(onClickListener);
-        bodytype5.setOnClickListener(onClickListener);
-        bodytype6.setOnClickListener(onClickListener);
+        bodytype1.setOnClickListener(onClickBodyTypeListener);
+        bodytype2.setOnClickListener(onClickBodyTypeListener);
+        bodytype3.setOnClickListener(onClickBodyTypeListener);
+        bodytype4.setOnClickListener(onClickBodyTypeListener);
+        bodytype5.setOnClickListener(onClickBodyTypeListener);
+        bodytype6.setOnClickListener(onClickBodyTypeListener);
 
         ab.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
@@ -370,7 +418,7 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
         return  ab.create();
     }
 
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
+    private View.OnClickListener onClickBodyTypeListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Button btn = (Button)view;
@@ -380,7 +428,7 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
         }
     };
 
-    Set<Integer> checkedSet = new HashSet<>();
+    Set<Integer> checkedCharacterSet = new HashSet<>();
     private AlertDialog createCharacterDialog() {
         final View innerView = getLayoutInflater().inflate(R.layout.dialog_character, null);
         final AlertDialog.Builder ab = new AlertDialog.Builder(this);
@@ -401,64 +449,64 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
         final ToggleButton character11 = (ToggleButton)innerView.findViewById(R.id.character11);
         final ToggleButton character12 = (ToggleButton)innerView.findViewById(R.id.character12);
 
-        Log.d("profileCreate", "checkedSet size" + checkedSet.size());
-        for (Integer toggleButtonId : checkedSet) {
-            ToggleButton character = (ToggleButton)innerView.findViewById(toggleButtonId);
-            character.setChecked(true);
+        Log.d("profileCreate", "checkedCharacterSet size" + checkedCharacterSet.size());
+        for (Integer toggleButtonId : checkedCharacterSet) {
+            ToggleButton tbtn = (ToggleButton)innerView.findViewById(toggleButtonId);
+            tbtn.setChecked(true);
         }
 
         ab.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 StringBuffer message = new StringBuffer();
-                checkedSet.clear();
+                checkedCharacterSet.clear();
                 if (character1.isChecked()) {
                     message.append(character1.getTextOn().toString()).append(", ");
-                    checkedSet.add(character1.getId());
+                    checkedCharacterSet.add(character1.getId());
                 }
                 if (character2.isChecked()) {
                     message.append(character2.getTextOn().toString()).append(", ");
-                    checkedSet.add(character2.getId());
+                    checkedCharacterSet.add(character2.getId());
                 }
                 if (character3.isChecked()) {
                     message.append(character3.getTextOn().toString()).append(", ");
-                    checkedSet.add(character3.getId());
+                    checkedCharacterSet.add(character3.getId());
                 }
                 if (character4.isChecked()) {
                     message.append(character4.getTextOn().toString()).append(", ");
-                    checkedSet.add(character4.getId());
+                    checkedCharacterSet.add(character4.getId());
                 }
                 if (character5.isChecked()) {
                     message.append(character5.getTextOn().toString()).append(", ");
-                    checkedSet.add(character5.getId());
+                    checkedCharacterSet.add(character5.getId());
                 }
                 if (character6.isChecked()) {
                     message.append(character6.getTextOn().toString()).append(", ");
-                    checkedSet.add(character6.getId());
+                    checkedCharacterSet.add(character6.getId());
                 }
                 if (character7.isChecked()) {
                     message.append(character7.getTextOn().toString()).append(", ");
-                    checkedSet.add(character7.getId());
+                    checkedCharacterSet.add(character7.getId());
                 }
                 if (character8.isChecked()) {
                     message.append(character8.getTextOn().toString()).append(", ");
-                    checkedSet.add(character8.getId());
+                    checkedCharacterSet.add(character8.getId());
                 }
                 if (character9.isChecked()) {
                     message.append(character9.getTextOn().toString()).append(", ");
-                    checkedSet.add(character9.getId());
+                    checkedCharacterSet.add(character9.getId());
                 }
                 if (character10.isChecked()) {
                     message.append(character10.getTextOn().toString()).append(", ");
-                    checkedSet.add(character10.getId());
+                    checkedCharacterSet.add(character10.getId());
                 }
                 if (character11.isChecked()) {
                     message.append(character11.getTextOn().toString()).append(", ");
-                    checkedSet.add(character11.getId());
+                    checkedCharacterSet.add(character11.getId());
                 }
                 if (character12.isChecked()) {
                     message.append(character12.getTextOn().toString()).append(", ");
-                    checkedSet.add(character12.getId());
+                    checkedCharacterSet.add(character12.getId());
                 }
                 inputCharacter.setText(message);
             }
@@ -472,6 +520,187 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
         });
 
         return  ab.create();
+    }
+
+    private AlertDialog createJobDialog() {
+        final View innerView = getLayoutInflater().inflate(R.layout.dialog_job, null);
+        final AlertDialog.Builder ab = new AlertDialog.Builder(this);
+        ab.setTitle("직업.분야");
+        ab.setView(innerView);
+        setDismiss(mMainDialog);
+
+        Button job1 = (Button)innerView.findViewById(R.id.job1);
+        Button job2 = (Button)innerView.findViewById(R.id.job2);
+        Button job3 = (Button)innerView.findViewById(R.id.job3);
+        Button job4 = (Button)innerView.findViewById(R.id.job4);
+        Button job5 = (Button)innerView.findViewById(R.id.job5);
+        Button job6 = (Button)innerView.findViewById(R.id.job6);
+        Button job7 = (Button)innerView.findViewById(R.id.job7);
+        Button job8 = (Button)innerView.findViewById(R.id.job8);
+        Button job9 = (Button)innerView.findViewById(R.id.job9);
+        Button job10 = (Button)innerView.findViewById(R.id.job10);
+        Button job11 = (Button)innerView.findViewById(R.id.job11);
+        Button job12 = (Button)innerView.findViewById(R.id.job12);
+        Button job13 = (Button)innerView.findViewById(R.id.job13);
+        Button job14 = (Button)innerView.findViewById(R.id.job14);
+        Button job15 = (Button)innerView.findViewById(R.id.job15);
+        Button job16 = (Button)innerView.findViewById(R.id.job16);
+        job1.setOnClickListener(onClickJobListener);
+        job2.setOnClickListener(onClickJobListener);
+        job3.setOnClickListener(onClickJobListener);
+        job4.setOnClickListener(onClickJobListener);
+        job5.setOnClickListener(onClickJobListener);
+        job6.setOnClickListener(onClickJobListener);
+        job7.setOnClickListener(onClickJobListener);
+        job8.setOnClickListener(onClickJobListener);
+        job9.setOnClickListener(onClickJobListener);
+        job10.setOnClickListener(onClickJobListener);
+        job11.setOnClickListener(onClickJobListener);
+        job12.setOnClickListener(onClickJobListener);
+        job13.setOnClickListener(onClickJobListener);
+        job14.setOnClickListener(onClickJobListener);
+        job15.setOnClickListener(onClickJobListener);
+        job16.setOnClickListener(onClickJobListener);
+
+        ab.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                setDismiss(mMainDialog);
+            }
+        });
+
+        return  ab.create();
+    }
+
+    private View.OnClickListener onClickJobListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Button btn = (Button)view;
+            String buttonText = btn.getText().toString();
+            inputJob.setText(buttonText);
+            setDismiss(mMainDialog);
+        }
+    };
+
+    Set<Integer> checkedHobbySet = new HashSet<>();
+    private AlertDialog createHobbyDialog() {
+        final View innerView = getLayoutInflater().inflate(R.layout.dialog_hobby, null);
+        final AlertDialog.Builder ab = new AlertDialog.Builder(this);
+        ab.setTitle("취미");
+        ab.setView(innerView);
+        setDismiss(mMainDialog);
+
+        final ToggleButton hobby1 = (ToggleButton)innerView.findViewById(R.id.hobby1);
+        final ToggleButton hobby2 = (ToggleButton)innerView.findViewById(R.id.hobby2);
+        final ToggleButton hobby3 = (ToggleButton)innerView.findViewById(R.id.hobby3);
+        final ToggleButton hobby4 = (ToggleButton)innerView.findViewById(R.id.hobby4);
+        final ToggleButton hobby5 = (ToggleButton)innerView.findViewById(R.id.hobby5);
+        final ToggleButton hobby6 = (ToggleButton)innerView.findViewById(R.id.hobby6);
+        final ToggleButton hobby7 = (ToggleButton)innerView.findViewById(R.id.hobby7);
+        final ToggleButton hobby8 = (ToggleButton)innerView.findViewById(R.id.hobby8);
+        final ToggleButton hobby9 = (ToggleButton)innerView.findViewById(R.id.hobby9);
+        final ToggleButton hobby10 = (ToggleButton)innerView.findViewById(R.id.hobby10);
+        final ToggleButton hobby11 = (ToggleButton)innerView.findViewById(R.id.hobby11);
+        final ToggleButton hobby12 = (ToggleButton)innerView.findViewById(R.id.hobby12);
+        final ToggleButton hobby13 = (ToggleButton)innerView.findViewById(R.id.hobby13);
+        final ToggleButton hobby14 = (ToggleButton)innerView.findViewById(R.id.hobby14);
+        final ToggleButton hobby15 = (ToggleButton)innerView.findViewById(R.id.hobby15);
+        final ToggleButton hobby16 = (ToggleButton)innerView.findViewById(R.id.hobby16);
+
+        Log.d("profileCreate", "checkedHobbySet size" + checkedHobbySet.size());
+        for (Integer toggleButtonId : checkedHobbySet) {
+            ToggleButton tbtn = (ToggleButton)innerView.findViewById(toggleButtonId);
+            tbtn.setChecked(true);
+        }
+
+        ab.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                StringBuffer message = new StringBuffer();
+                checkedHobbySet.clear();
+                if (hobby1.isChecked()) {
+                    message.append(hobby1.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby1.getId());
+                }
+                if (hobby2.isChecked()) {
+                    message.append(hobby2.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby2.getId());
+                }
+                if (hobby3.isChecked()) {
+                    message.append(hobby3.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby3.getId());
+                }
+                if (hobby4.isChecked()) {
+                    message.append(hobby4.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby4.getId());
+                }
+                if (hobby5.isChecked()) {
+                    message.append(hobby5.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby5.getId());
+                }
+                if (hobby6.isChecked()) {
+                    message.append(hobby6.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby6.getId());
+                }
+                if (hobby7.isChecked()) {
+                    message.append(hobby7.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby7.getId());
+                }
+                if (hobby8.isChecked()) {
+                    message.append(hobby8.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby8.getId());
+                }
+                if (hobby9.isChecked()) {
+                    message.append(hobby9.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby9.getId());
+                }
+                if (hobby10.isChecked()) {
+                    message.append(hobby10.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby10.getId());
+                }
+                if (hobby11.isChecked()) {
+                    message.append(hobby11.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby11.getId());
+                }
+                if (hobby12.isChecked()) {
+                    message.append(hobby12.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby12.getId());
+                }
+                if (hobby13.isChecked()) {
+                    message.append(hobby13.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby13.getId());
+                }
+                if (hobby14.isChecked()) {
+                    message.append(hobby14.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby14.getId());
+                }
+                if (hobby15.isChecked()) {
+                    message.append(hobby15.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby15.getId());
+                }
+                if (hobby16.isChecked()) {
+                    message.append(hobby16.getTextOn().toString()).append(", ");
+                    checkedHobbySet.add(hobby16.getId());
+                }
+                inputHobby.setText(message);
+            }
+        });
+
+        ab.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                setDismiss(mMainDialog);
+            }
+        });
+
+        return  ab.create();
+    }
+
+    private void nextActivity() {
+        Intent intent = new Intent(ProfileCreateActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 }

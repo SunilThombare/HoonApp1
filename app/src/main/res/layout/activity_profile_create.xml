@@ -115,14 +115,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:hint="직업이나 직장명을 입력하세요."
+                android:editable="false"
+                android:hint="직업.분야를 선택하세요."
                 style="@style/editTextTextStyle"
                 android:labelFor="@+id/editText"
-                android:maxLength="12"
                 android:paddingBottom="16dp"
                 android:paddingStart="96dp"
                 android:paddingEnd="8dp"
-                android:paddingTop="8dp" >
+                android:paddingTop="8dp"
+                android:onClick="onClickJob">
             </EditText>
 
             <TextView
@@ -133,7 +134,38 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:layout_gravity="center_vertical"
-                android:text="직업 or 직장"
+                android:text="직업.분야"
+                style="@style/labelTextStyle"/>
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <EditText
+                android:id="@+id/inputHobby"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:editable="false"
+                android:hint="평소 즐겨하는 것을 선택하세요."
+                style="@style/editTextTextStyle"
+                android:labelFor="@+id/editText"
+                android:paddingBottom="16dp"
+                android:paddingStart="56dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp"
+                android:onClick="onClickHobby">
+            </EditText>
+
+            <TextView
+                android:id="@+id/prefix9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:layout_gravity="center_vertical"
+                android:text="취미"
                 style="@style/labelTextStyle"/>
         </FrameLayout>
         <FrameLayout

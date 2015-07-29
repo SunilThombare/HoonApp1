@@ -16,6 +16,7 @@ import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.main.MainActivity;
+import com.babybong.appting.profile.ProfileCreateActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -86,7 +87,8 @@ public class PhoneAuthConfirmActivity extends BaseActivity {
                         String phoneAuth = memberDto.getString("phoneAuth");
 
                         if (isCorrectAuthNumber(authNumber, phoneAuth)) {
-                            nextActivity(MainActivity.class);
+                            //nextActivity(MainActivity.class);
+                            nextActivity(ProfileCreateActivity.class);
                         } else {
                             alertMessage("인증번호가 다릅니다.");
                         }

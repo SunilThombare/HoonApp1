@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.NumberPicker;
@@ -17,7 +18,7 @@ import com.babybong.appting.login.SignupActivity;
 /**
  * Created by hoon on 2015-05-09.
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends ActionBarActivity {
     public void alertMessage(String message) {
         Log.d("alertMessage", "message : " + message);
         Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);

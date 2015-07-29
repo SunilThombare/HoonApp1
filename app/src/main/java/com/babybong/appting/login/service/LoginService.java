@@ -23,6 +23,7 @@ import com.babybong.appting.app.AppController;
 import com.babybong.appting.login.LoginActivity;
 import com.babybong.appting.login.PhoneAuthActivity;
 import com.babybong.appting.main.MainActivity;
+import com.babybong.appting.profile.ProfileCreateActivity;
 
 /**
  * Created by hoon on 2015-05-10.
@@ -58,13 +59,18 @@ public class LoginService {
                         JSONObject memberDto = response.getJSONObject("dto");
                         String dbPwd = memberDto.getString("password");
                         String phone = memberDto.getString("phone");
+                        String nickName = memberDto.getString("nickName");
                         if (isCorrectPwd(pwd, dbPwd)) {
                             storeData(mail, pwd);
                             if (phone == null || "null".equals(phone)) { //전화번호가 없으면 폰인증화면으로이동
                                 nextActivity(PhoneAuthActivity.class);
                             } else {
-                                Log.d("login", "멤버입니다.!! 메인화면으로 이동!! ==> " + phone);
-                                loginSuccessNextActivity(MainActivity.class);
+                                Log.d("login", "[" + nickName + "]멤버입니다.!! 메인화면으로 이동!! ==> " + phone);
+                                if (nickName != null && !"null".equals(nickName)) {
+                                    loginSuccessNextActivity(MainActivity.class);
+                                } else {
+                                    nextActivity(ProfileCreateActivity.class);
+                                }
                             }
                         } else {
                             alertMessage("패스워드가 다릅니다.");
