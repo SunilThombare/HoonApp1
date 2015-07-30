@@ -91,6 +91,7 @@ public class SignupActivity extends BaseActivity {
         memberDto.setPassword(pwd);
         memberDto.setCreateAt(new Date());
         memberDto.setUpdateAt(new Date());
+        //memberDto.setDeviceRegId();
 
         ObjectMapper mapper = new ObjectMapper();
         final JSONObject jsonObject = new JSONObject(mapper.writeValueAsString(memberDto));
