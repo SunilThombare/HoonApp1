@@ -34,19 +34,14 @@ public class ProfileEditActivity extends BaseActivity {
     }
 
     public void onClickImageEditBtn(View view) {
-        nextActivity(ImageEditActivity.class);
+        String[] profileImages = getIntent().getExtras().getStringArray("profileImages");
+        Intent intent = new Intent(ProfileEditActivity.this, ImageEditActivity.class);
+        intent.putExtra("profileImages", profileImages);
+        startActivity(intent);
     }
 
     public void onClickBasicEditBtn(View view) {
         nextActivity(ProfileBasicEditActivity.class);
-    }
-
-    public void onClickSelfIntroductionEditBtn(View view) {
-        nextActivity(IntroductionEditActivity.class);
-    }
-
-    public void onClickSelfIntroductionChoiceEditBtn(View view) {
-        nextActivity(GcmMainActivity.class);
     }
 
     public void nextActivity(Class zlass) {

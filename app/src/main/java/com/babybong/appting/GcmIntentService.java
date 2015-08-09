@@ -60,19 +60,20 @@ public class GcmIntentService extends IntentService {
                     } catch (InterruptedException e) {
                     }
                 }
-                Log.i(TAG, "Completed work @ " + SystemClock.elapsedRealtime());
+                //Log.i(TAG, "Completed work @ " + SystemClock.elapsedRealtime());
                 // Post notification of received message.
-                sendNotification("Received: " + extras.toString());
+                String msg = (String)extras.get("msg");
+                Log.i(TAG, "msg: " + msg);
+                sendNotification(msg);
                 Log.i(TAG, "Received: " + extras.toString());
 
-                String msg = (String)extras.get("msg");
 
-                try {
+                /*try {
                     String msgKr = URLDecoder.decode(msg, "euc-kr");
                     Log.i(TAG, "msgKr: " + msgKr);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         }
         // Release the wake lock provided by the WakefulBroadcastReceiver.
@@ -92,7 +93,7 @@ public class GcmIntentService extends IntentService {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle("GCM Notification")
+                        .setContentTitle("애봉앱팅 알림")
                         .setStyle(new NotificationCompat.BigTextStyle()
                                 .bigText(msg))
                         .setContentText(msg);

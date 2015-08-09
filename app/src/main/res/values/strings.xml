@@ -60,4 +60,14 @@
     <string name="hobby14">댄스.노래.악기연주</string>
     <string name="hobby15">봉사활동</string>
     <string name="hobby16">기타</string>
+
+    <string name="nickname">닉네임</string>
+    <string name="address">지역</string>
+    <string name="job">직업.분야</string>
+    <string name="hobby">취미</string>
+    <string name="character">성격</string>
+    <string name="bloodType">혈액형</string>
+    <string name="religion">종교</string>
+    <string name="height">신장</string>
+    <string name="bodyType">체형</string>
 </resources>

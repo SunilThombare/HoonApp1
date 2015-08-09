@@ -19,7 +19,10 @@ public class AppController extends Application {
     //api 서버주소
     //public static final String API_URL = "http://192.168.25.6:8080";
     //public static final String API_URL = "http://192.168.219.158:8080";
-	public static final String API_URL = "http://192.168.43.167:8080";
+	//public static final String API_URL = "http://192.168.43.167:8080";
+
+	//production
+	public static final String API_URL = "http://dokkl23.cafe24.com/";
 
 	private RequestQueue mRequestQueue;
 	private ImageLoader mImageLoader;

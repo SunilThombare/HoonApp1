@@ -69,7 +69,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:layout_gravity="center_vertical"
-                android:text="닉네임"
+                android:text="@string/nickname"
                 style="@style/labelTextStyle"/>
         </FrameLayout>
 
@@ -91,7 +91,7 @@
                 android:paddingStart="56dp"
                 android:paddingEnd="8dp"
                 android:paddingTop="8dp"
-                android:onClick="onClickArea1Btn">
+                >
             </EditText>
 
             <TextView
@@ -102,7 +102,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:layout_gravity="center_vertical"
-                android:text="지역"
+                android:text="@string/address"
                 style="@style/labelTextStyle"/>
         </FrameLayout>
 
@@ -123,7 +123,7 @@
                 android:paddingStart="96dp"
                 android:paddingEnd="8dp"
                 android:paddingTop="8dp"
-                android:onClick="onClickJob">
+                >
             </EditText>
 
             <TextView
@@ -134,7 +134,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:layout_gravity="center_vertical"
-                android:text="직업.분야"
+                android:text="@string/job"
                 style="@style/labelTextStyle"/>
         </FrameLayout>
         <FrameLayout
@@ -154,7 +154,7 @@
                 android:paddingStart="56dp"
                 android:paddingEnd="8dp"
                 android:paddingTop="8dp"
-                android:onClick="onClickHobby">
+                >
             </EditText>
 
             <TextView
@@ -165,7 +165,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:layout_gravity="center_vertical"
-                android:text="취미"
+                android:text="@string/hobby"
                 style="@style/labelTextStyle"/>
         </FrameLayout>
         <FrameLayout
@@ -184,7 +184,7 @@
                 android:paddingStart="56dp"
                 android:paddingEnd="8dp"
                 android:paddingTop="8dp"
-                android:onClick="onClickCharacter">
+                >
             </EditText>
 
             <TextView
@@ -195,7 +195,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="8dp"
                 android:layout_gravity="center_vertical"
-                android:text="성격"
+                android:text="@string/character"
                 style="@style/labelTextStyle"/>
         </FrameLayout>
         <LinearLayout
@@ -222,7 +222,7 @@
                     android:paddingStart="56dp"
                     android:paddingEnd="8dp"
                     android:paddingTop="8dp"
-                    android:onClick="onClickBloodTypeBtn">
+                    >
                 </EditText>
 
                 <TextView
@@ -233,7 +233,7 @@
                     android:paddingEnd="8dp"
                     android:paddingBottom="8dp"
                     android:layout_gravity="center_vertical"
-                    android:text="혈액형"
+                    android:text="@string/bloodType"
                     style="@style/labelTextStyle"/>
             </FrameLayout>
 
@@ -255,7 +255,7 @@
                     android:paddingStart="56dp"
                     android:paddingEnd="8dp"
                     android:paddingTop="8dp"
-                    android:onClick="onClickReligionBtn">
+                    >
                 </EditText>
 
                 <TextView
@@ -266,7 +266,7 @@
                     android:paddingEnd="8dp"
                     android:paddingBottom="8dp"
                     android:layout_gravity="center_vertical"
-                    android:text="종교"
+                    android:text="@string/religion"
                     style="@style/labelTextStyle"/>
             </FrameLayout>
         </LinearLayout>
@@ -293,7 +293,7 @@
                     android:paddingStart="56dp"
                     android:paddingEnd="8dp"
                     android:paddingTop="8dp"
-                    android:onClick="onClickHeight">
+                    >
                 </EditText>
 
                 <TextView
@@ -304,7 +304,7 @@
                     android:paddingEnd="8dp"
                     android:paddingBottom="8dp"
                     android:layout_gravity="center_vertical"
-                    android:text="신장"
+                    android:text="@string/height"
                     style="@style/labelTextStyle"/>
             </FrameLayout>
             <FrameLayout
@@ -326,7 +326,7 @@
                     android:paddingStart="56dp"
                     android:paddingEnd="8dp"
                     android:paddingTop="8dp"
-                    android:onClick="onClickBodyType">
+                    >
                 </EditText>
 
                 <TextView
@@ -337,7 +337,7 @@
                     android:paddingEnd="8dp"
                     android:paddingBottom="8dp"
                     android:layout_gravity="center_vertical"
-                    android:text="체형"
+                    android:text="@string/bodyType"
                     style="@style/labelTextStyle"/>
             </FrameLayout>
         </LinearLayout>

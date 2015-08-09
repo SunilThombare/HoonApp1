@@ -13,7 +13,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
+import com.babybong.appting.common.ApiAddress;
 import com.babybong.appting.login.service.DataStoredService;
+import com.babybong.appting.profile.image.ImageDownloader;
 import com.babybong.appting.profile.image.MultipartRequest;
 import com.babybong.appting.profile.image.PhotoMultipartRequest;
 
@@ -59,6 +61,24 @@ public class ImageEditActivity extends ImageSelectHelperActivity {
             }
         });*/
         //getSelectedImageFile(); // extract selected & saved image file.
+
+        String[] profileImages = getIntent().getExtras().getStringArray("profileImages");
+        Log.d("hoon", "profileImages : " + profileImages[0]);
+        Log.d("hoon", "profileImages : " + profileImages[1]);
+        Log.d("hoon", "profileImages : " + profileImages[2]);
+        Log.d("hoon", "profileImages : " + profileImages[3]);
+        if (profileImages[0] != null && !profileImages[0].equals("null")) {
+            new ImageDownloader(ivImageSelected).execute(ApiAddress.IMAGE_URL + profileImages[0]);
+        }
+        if (profileImages[1] != null && !profileImages[1].equals("null")) {
+            new ImageDownloader(ivImageSelected2).execute(ApiAddress.IMAGE_URL + profileImages[1]);
+        }
+        if (profileImages[2] != null && !profileImages[2].equals("null")) {
+            new ImageDownloader(ivImageSelected3).execute(ApiAddress.IMAGE_URL + profileImages[2]);
+        }
+        if (profileImages[3] != null && !profileImages[3].equals("null")) {
+            new ImageDownloader(ivImageSelected4).execute(ApiAddress.IMAGE_URL + profileImages[3]);
+        }
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {

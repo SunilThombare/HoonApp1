@@ -76,6 +76,15 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
     }
 
     private void init() {
+        inputArea1.setOnClickListener(onClickListener);
+        inputJob.setOnClickListener(onClickListener);
+        inputHobby.setOnClickListener(onClickListener);
+        inputCharacter.setOnClickListener(onClickListener);
+        inputBloodtype.setOnClickListener(onClickListener);
+        inputReligion.setOnClickListener(onClickListener);
+        inputHeight.setOnClickListener(onClickListener);
+        inputBodyType.setOnClickListener(onClickListener);
+
         inputBloodtype.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -156,6 +165,49 @@ public class ProfileCreateActivity extends BaseActivity implements NumberPicker.
             }
         });
     }
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.inputArea1:
+                    final String items[] = getResources().getStringArray(R.array.area1);
+                    dialogSelectOption("지역", items, 1, inputArea1, areaSelectedIndex);
+                    break;
+                case R.id.inputJob:
+                    mMainDialog = createJobDialog();
+                    mMainDialog.show();
+                    break;
+                case R.id.inputHobby:
+                    mMainDialog = createHobbyDialog();
+                    mMainDialog.show();
+                    break;
+                case R.id.inputCharacter:
+                    mMainDialog = createCharacterDialog();
+                    mMainDialog.show();
+                    break;
+                case R.id.inputBloodtype:
+                    final String bloodTypeItems[] = getResources().getStringArray(R.array.bloodType);
+                    dialogSelectOption("혈액형", bloodTypeItems, 2, inputBloodtype, bloodTypeSelectedIndex);
+                    break;
+                case R.id.inputReligion:
+                    final String religionItems[] = getResources().getStringArray(R.array.religion);
+                    dialogSelectOption("종교", religionItems, 3, inputReligion, religionSelectedIndex);
+                    break;
+                case R.id.inputHeight:
+                    mMainDialog = createHeightDialog();
+                    mMainDialog.show();
+                    break;
+                case R.id.inputBodyType:
+                    mMainDialog = createBodyTypeDialog();
+                    mMainDialog.show();
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    };
 
     public void onClickArea1Btn(View view) {
         final String items[] = getResources().getStringArray(R.array.area1);
