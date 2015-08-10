@@ -74,7 +74,7 @@
                     style="@style/labelTextStyle"/>
             </FrameLayout>
 
-            <FrameLayout
+            <!--<FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
@@ -97,6 +97,56 @@
 
                 <TextView
                     android:id="@+id/prefix6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/address"
+                    style="@style/labelTextStyle"/>
+            </FrameLayout>-->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/inputArea1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:singleLine="true"
+                        android:hint="지역선택"
+                        style="@style/editTextTextStyle"
+                        android:labelFor="@+id/editText"
+                        android:maxLength="12"
+                        android:paddingBottom="16dp"
+                        android:paddingStart="56dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="8dp"
+                        >
+                    </EditText>
+                    <EditText
+                        android:id="@+id/inputArea2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:singleLine="true"
+                        style="@style/editTextTextStyle"
+                        android:labelFor="@+id/editText"
+                        android:maxLength="12"
+                        android:paddingBottom="16dp"
+                        android:paddingEnd="8dp"
+                        android:paddingTop="8dp"
+                        >
+                    </EditText>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/prefix66"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="8dp"

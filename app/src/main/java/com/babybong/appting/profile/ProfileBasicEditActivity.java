@@ -22,6 +22,8 @@ import com.babybong.appting.BaseActivity;
 import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
 import com.babybong.appting.common.ApiAddress;
+import com.babybong.appting.common.AreaDialogFragment;
+import com.babybong.appting.common.AreaDialogInterface;
 import com.babybong.appting.login.PhoneAuthActivity;
 import com.babybong.appting.login.service.DataStoredService;
 import com.babybong.appting.main.MainActivity;
@@ -40,11 +42,11 @@ import java.util.Set;
 /**
  * Created by hoon on 2015-05-14.
  */
-public class ProfileBasicEditActivity extends BaseActivity implements NumberPicker.OnValueChangeListener {
+public class ProfileBasicEditActivity extends BaseActivity implements NumberPicker.OnValueChangeListener, AreaDialogInterface {
     private EditText inputNickNmae;
     private EditText inputJob;
     private EditText inputHobby;
-    private EditText inputArea1;
+    private EditText inputArea1, inputArea2;
     private EditText inputCharacter;
     private EditText inputBloodtype, inputReligion;
     private EditText inputHeight, inputBodyType;
@@ -62,6 +64,7 @@ public class ProfileBasicEditActivity extends BaseActivity implements NumberPick
         setContentView(R.layout.activity_profile_basic_edit);
         inputNickNmae = (EditText) findViewById(R.id.inputNickNmae);
         inputArea1 = (EditText) findViewById(R.id.inputArea1);
+        inputArea2 = (EditText) findViewById(R.id.inputArea2);
         inputJob = (EditText) findViewById(R.id.inputJob);
         inputHobby = (EditText) findViewById(R.id.inputHobby);
         inputCharacter = (EditText) findViewById(R.id.inputCharacter);
@@ -110,8 +113,10 @@ public class ProfileBasicEditActivity extends BaseActivity implements NumberPick
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    final String items[] = getResources().getStringArray(R.array.area1);
-                    dialogSelectOption("지역", items, 1, inputArea1, areaSelectedIndex);
+                    /*final String items[] = getResources().getStringArray(R.array.area1);
+                    dialogSelectOption("지역", items, 1, inputArea1, areaSelectedIndex);*/
+                    AreaDialogFragment dialog = new AreaDialogFragment();
+                    dialog.show(getFragmentManager(), "areaDialog");
                 }
             }
         });
@@ -172,8 +177,10 @@ public class ProfileBasicEditActivity extends BaseActivity implements NumberPick
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.inputArea1:
-                    final String items[] = getResources().getStringArray(R.array.area1);
-                    dialogSelectOption("지역", items, 1, inputArea1, areaSelectedIndex);
+                   /* final String items[] = getResources().getStringArray(R.array.area1);
+                    dialogSelectOption("지역", items, 1, inputArea1, areaSelectedIndex);*/
+                    AreaDialogFragment dialog = new AreaDialogFragment();
+                    dialog.show(getFragmentManager(), "areaDialog");
                     break;
                 case R.id.inputJob:
                     mMainDialog = createJobDialog();
@@ -211,8 +218,10 @@ public class ProfileBasicEditActivity extends BaseActivity implements NumberPick
     };
 
     public void onClickArea1Btn(View view) {
-        final String items[] = getResources().getStringArray(R.array.area1);
-        dialogSelectOption("지역", items, 1, inputArea1, areaSelectedIndex);
+        /*final String items[] = getResources().getStringArray(R.array.area1);
+        dialogSelectOption("지역", items, 1, inputArea1, areaSelectedIndex);*/
+        AreaDialogFragment dialog = new AreaDialogFragment();
+        dialog.show(getFragmentManager(), "areaDialog");
     }
 
     public void onClickBloodTypeBtn(View view) {
@@ -305,6 +314,7 @@ public class ProfileBasicEditActivity extends BaseActivity implements NumberPick
         final String mail = DataStoredService.getStoredData(ProfileBasicEditActivity.this, DataStoredService.STORE_MAIL);
         final String nickName = inputNickNmae.getText().toString();
         final String area1 = inputArea1.getText().toString();
+        final String area2 = inputArea2.getText().toString();
         final String job = inputJob.getText().toString();
         final String hobby = inputHobby.getText().toString();  //추가
         final String character = inputCharacter.getText().toString();  //추가
@@ -321,6 +331,7 @@ public class ProfileBasicEditActivity extends BaseActivity implements NumberPick
         memberDto.setMail(mail); //key
         memberDto.setNickName(nickName);
         memberDto.setAddress1(area1);
+        memberDto.setAddress2(area2);
         memberDto.setJob(job);
         memberDto.setHobby(hobby);
         memberDto.setCharacter(character);
@@ -834,4 +845,9 @@ public class ProfileBasicEditActivity extends BaseActivity implements NumberPick
         AppController.getInstance().addToRequestQueue(jsObjRequest);
     }
 
+    @Override
+    public void selectedArea(String area1, String area2) {
+        inputArea1.setText(area1);
+        inputArea2.setText(area2);
+    }
 }

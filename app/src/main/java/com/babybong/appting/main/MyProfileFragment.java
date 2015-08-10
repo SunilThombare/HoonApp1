@@ -230,9 +230,12 @@ public final class MyProfileFragment extends Fragment {
     }
 
     private void imageUpload(NetworkImageView nImageView, String imageName) {
+        if (imageName == null || imageName.equals("null")) {
+            nImageView.setDefaultImageResId(R.drawable.ic_launcher);
+            return;
+        }
         String url = ApiAddress.IMAGE_URL + imageName;
         nImageView.setImageUrl(url, imageLoader);
-        nImageView.setDefaultImageResId(R.drawable.ic_launcher);
         //ivImage1.setErrorImageResId(..);
     }
 
