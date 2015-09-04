@@ -9,24 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.NetworkImageView;
-import com.android.volley.toolbox.Volley;
 import com.babybong.appting.R;
 import com.babybong.appting.adater.MemberListAdapter;
 import com.babybong.appting.app.AppController;
-import com.babybong.appting.login.service.DataStoredService;
+import com.babybong.appting.common.ApiAddress;
 import com.babybong.appting.model.MemberDto;
-import com.babybong.appting.util.LruBitmapCache;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -35,11 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public final class TodayTingFragment extends Fragment {
     private static final String KEY_CONTENT = "TestFragment:Content";
@@ -70,9 +60,9 @@ public final class TodayTingFragment extends Fragment {
         }
     }
 
-    private static final String url = AppController.API_URL + "/members";
+
     private ProgressDialog pDialog;
-    private List<MemberDto> movieList = new ArrayList<MemberDto>();
+    private List<MemberDto> connectedMembers = new ArrayList<MemberDto>();
     private ListView listView;
     private MemberListAdapter adapter;
 
@@ -80,7 +70,7 @@ public final class TodayTingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_todayting, container, false);
         listView = (ListView) view.findViewById(R.id.list);
-        adapter = new MemberListAdapter(getActivity(), movieList);
+        adapter = new MemberListAdapter(getActivity(), connectedMembers);
         listView.setAdapter(adapter);
 
         pDialog = new ProgressDialog(getActivity());
@@ -94,7 +84,7 @@ public final class TodayTingFragment extends Fragment {
 
     private void dataLoading() {
         // Creating volley request obj
-        JsonArrayRequest movieReq = new JsonArrayRequest(url,
+        JsonArrayRequest movieReq = new JsonArrayRequest(ApiAddress.CONNECTED_MEMBERS + "?myEmail=dokkl@naver.com",
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -107,11 +97,13 @@ public final class TodayTingFragment extends Fragment {
 
                                 JSONObject obj = response.getJSONObject(i);
                                 MemberDto memberDto = new MemberDto();
-                                memberDto.setMail(obj.getString("mail"));
-                                memberDto.setSex(obj.getString("sex"));
-								/*movie.setRating(((Number) obj.get("rating"))
-										.doubleValue());*/
-                                memberDto.setPhone(obj.getString("phone"));
+                                memberDto.setNickName(obj.getString("nickName"));
+                                memberDto.setAge(obj.getInt("age"));
+                                memberDto.setAddress1(obj.getString("address1"));
+                                memberDto.setAddress2(obj.getString("address2"));
+								memberDto.setImage1(obj.getString("image1"));
+                                memberDto.setHobby(obj.getString("hobby"));
+                                memberDto.setCharacter(obj.getString("character"));
 
 								/*// Genre is json array
 								JSONArray genreArry = obj.getJSONArray("genre");
@@ -122,7 +114,7 @@ public final class TodayTingFragment extends Fragment {
 								movie.setGenre(genre);*/
 
                                 // adding movie to movies array
-                                movieList.add(memberDto);
+                                connectedMembers.add(memberDto);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

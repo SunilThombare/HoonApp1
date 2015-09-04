@@ -15,6 +15,7 @@ import java.util.List;
 
 import com.babybong.appting.R;
 import com.babybong.appting.app.AppController;
+import com.babybong.appting.common.ApiAddress;
 import com.babybong.appting.model.MemberDto;
 
 public class MemberListAdapter extends BaseAdapter {
@@ -52,38 +53,27 @@ public class MemberListAdapter extends BaseAdapter {
 		if (convertView == null)
 			convertView = inflater.inflate(R.layout.list_row, null);
 
-		if (imageLoader == null)
+		if (imageLoader == null) {
 			imageLoader = AppController.getInstance().getImageLoader();
-		NetworkImageView thumbNail = (NetworkImageView) convertView
-				.findViewById(R.id.thumbnail);
-		TextView title = (TextView) convertView.findViewById(R.id.title);
-		TextView rating = (TextView) convertView.findViewById(R.id.rating);
-		TextView genre = (TextView) convertView.findViewById(R.id.genre);
-		TextView year = (TextView) convertView.findViewById(R.id.releaseYear);
+		}
+		NetworkImageView image1 = (NetworkImageView) convertView.findViewById(R.id.image1);
+		TextView nickName = (TextView) convertView.findViewById(R.id.nickName);
+		TextView age = (TextView) convertView.findViewById(R.id.age);
+		TextView hobby = (TextView) convertView.findViewById(R.id.hobby);
+		TextView address1 = (TextView) convertView.findViewById(R.id.address1);
+		TextView address2 = (TextView) convertView.findViewById(R.id.address2);
+		TextView date = (TextView) convertView.findViewById(R.id.date);
 
 		// getting movie data for the row
 		MemberDto m = movieItems.get(position);
 
-		// thumbnail image
-		//thumbNail.setImageUrl(m.getThumbnailUrl(), imageLoader);
-		
-		// title
-		title.setText(m.getMail());
-		
-		// rating
-		rating.setText("Rating: " + String.valueOf(m.getSex()));
-		
-		/*// genre
-		String genreStr = "";
-		for (String str : m.getGenre()) {
-			genreStr += str + ", ";
-		}
-		genreStr = genreStr.length() > 0 ? genreStr.substring(0,
-				genreStr.length() - 2) : genreStr;
-		genre.setText(genreStr);*/
-		
-		// release year
-		year.setText(String.valueOf(m.getPhone()));
+		image1.setImageUrl(ApiAddress.IMAGE_URL + m.getImage1(), imageLoader);
+		nickName.setText(m.getNickName());
+		age.setText("( " + m.getAge() + " )");
+		hobby.setText(m.getHobby());
+		address1.setText(m.getAddress1());
+		address2.setText(m.getAddress2());
+		date.setText(m.getWantDate());
 
 		return convertView;
 	}

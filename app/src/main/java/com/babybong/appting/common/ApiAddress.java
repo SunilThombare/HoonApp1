@@ -12,4 +12,5 @@ public class ApiAddress {
     public final static String DEVICE_REG_ID_ADD = AppController.API_URL + "/members/deviceRegId";
 
     public final static String IMAGE_URL = AppController.API_URL + "/image/";
+    public static final String CONNECTED_MEMBERS = AppController.API_URL + "/connectedMembers";
 }

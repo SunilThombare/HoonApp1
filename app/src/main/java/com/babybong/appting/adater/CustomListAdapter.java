@@ -17,7 +17,8 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
-public class CustomListAdapter extends BaseAdapter {
+//public class CustomListAdapter extends BaseAdapter {
+public class CustomListAdapter {
 	private Activity activity;
 	private LayoutInflater inflater;
 	private List<Movie> movieItems;
@@ -27,7 +28,7 @@ public class CustomListAdapter extends BaseAdapter {
 		this.activity = activity;
 		this.movieItems = movieItems;
 	}
-
+/*
 	@Override
 	public int getCount() {
 		return movieItems.size();
@@ -86,6 +87,6 @@ public class CustomListAdapter extends BaseAdapter {
 		year.setText(String.valueOf(m.getYear()));
 
 		return convertView;
-	}
+	}*/
 
 }

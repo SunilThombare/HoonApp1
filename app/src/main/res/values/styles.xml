@@ -44,7 +44,7 @@
 
     <style name="Widget.TabPageIndicator" parent="Widget">
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/vpi__tab_indicator</item>
+        <item name="android:background">@drawable/vpi__tab_indicator_custom</item>
         <item name="android:paddingLeft">22dip</item>
         <item name="android:paddingRight">22dip</item>
         <item name="android:paddingTop">12dp</item>
@@ -56,12 +56,21 @@
 
     <style name="TextAppearance.TabPageIndicator" parent="Widget">
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/vpi__dark_theme</item>
+        <item name="android:textColor">@color/vpi__bright_foreground_holo_light</item>
     </style>
 
     <style name="Widget.IconPageIndicator" parent="Widget">
         <item name="android:layout_marginLeft">6dp</item>
         <item name="android:layout_marginRight">6dp</item>
     </style>
+
+    <!--<style name="Widget.MyTitlepageIndicator">
+        <item name="footerColor">#ff99cc33</item>
+        <item name="footerIndicatorStyle">underline</item>
+        <item name="footerIndicatorHeight">3dp</item>
+        <item name="footerLineHeight">1.5dp</item>
+        <item name="footerPadding">6dp</item>
+        <item name="selectedColor">#ffffffff</item>
+    </style>-->
 
 </resources>

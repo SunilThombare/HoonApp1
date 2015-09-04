@@ -4,6 +4,8 @@ android {
     compileSdkVersion 21
     buildToolsVersion '21.0.1'
 
+    compileOptions.encoding = 'UTF-8'
+
     defaultConfig {
         applicationId "info.androidhive.customlistviewvolley"
         minSdkVersion 11
@@ -33,6 +35,10 @@ android {
         // 앱 구동 시 자바 할당 힙을 지정
         javaMaxHeapSize "4g"
     }*/
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {

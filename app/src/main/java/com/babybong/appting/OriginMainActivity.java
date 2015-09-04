@@ -26,7 +26,7 @@ import com.babybong.appting.app.AppController;
 import com.babybong.appting.model.Movie;
 
 public class OriginMainActivity extends Activity {
-	// Log tag
+	/*// Log tag
 	private static final String TAG = OriginMainActivity.class.getSimpleName();
 
 	// Movies json url
@@ -126,6 +126,6 @@ public class OriginMainActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
-	}
+	}*/
 
 }

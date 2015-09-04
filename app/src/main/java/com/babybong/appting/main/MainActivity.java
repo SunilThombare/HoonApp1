@@ -1,5 +1,6 @@
 package com.babybong.appting.main;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -29,5 +30,7 @@ public class MainActivity extends FragmentActivity {
 
         TabPageIndicator indicator = (TabPageIndicator)findViewById(R.id.indicator);
         indicator.setViewPager(pager);
+        //indicator.setBackgroundColor(Color.parseColor("#32cd32"));  //32cd32 //228b22
+
     }
 }
